@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>top</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='js/common.js')}}">
+    
+    <link rel="stylesheet" href="{{url_for('static', filename='css/top.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+
+  </head>
+  <!-- menu checkbox周りを<>で囲う際はbodyないのものすべてを囲まないと設定したアニメーションが動かなくなります -->
+  <body>
+    <div class="wrap">
+      <div><a href="{{ url_for('index') }}"><img src="{{url_for('static', filename='images/logo2.png')}}"></a></div>
+    </div>
+    <input type="checkbox" id="menu" checked/>
+    <label for="menu" class="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav">
+      <ul class="navwrap">
+
+        {% if current_user.is_authenticated %}
+        <li class="hoverli"><a href="{{ url_for('signout') }}">ログアウト</a></li>
+        <li class="hoverli"><a href="{{ url_for('memberinfo') }}">マイページ</a></li>
+        {% else %}
+        <li class="hoverli"><a href="{{ url_for('signin') }}">ログイン</a></li>
+        {% endif %} 
+
+        <li><a href="{{ url_for('index') }}">トップページ</a></li>
+        <li>
+          <div >
+            <a href="{{ url_for('views.movielist') }}">上映中一覧</a>
+            <ul>
+              <li><a href="{{ url_for('views.movielist_h') }}" style="padding-top: 0.1vw;"><span>H</span>orror</a></li>
+              <li><a href="{{ url_for('views.movielist_a') }}"><span>A</span>ction</a></li>
+              <li><a href="{{ url_for('views.movielist_l') }}"><span>L</span>ove</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="{{ url_for('views.cominglist') }}">公開予定</a></li>
+        <li><a href="{{ url_for('views.ticketdetail') }}">チケット代金</a></li>
+        <li><a style="padding: 0.7vw 0.9vw; font-size:1vw;" href="{{ url_for('views.screen') }}">スクリーンスペック</a></li>
+        <li><a style="padding: 0.7vw 1.1vw;" href="{{ url_for('views.sitemap') }}">サイトマップ</a></li>
+      </ul>
+    </nav>
+    <div class="backimg"><img src="{{url_for('static', filename='images/eigakan2.jpg')}}" alt=""></div>
+    
+    
+    <main>
+      <!-- spaceはnavの帳尻合わせのために作ってる -->
+      <div class="space"></div>
+      <!-- スライダー -->
+      <div id="slider_space">
+        <div class="slider">
+          <div><img src="{{url_for('static', filename='images/sampleC.jpg')}}" alt="slideImg"></div>
+          <div><img src="{{url_for('static', filename='images/UMANew_9.jpg')}}" alt="slideImg"></div>
+          <div><img src="{{url_for('static', filename='images/sampleC.jpg')}}" alt="slideImg"></div>
+          <div><img src="{{url_for('static', filename='images/UMANew_9.jpg')}}" alt="slideImg"></div>
+        </div>
+      </div>
+
+      <!-- 上映中作品＆上映予定作品 -->
+      <div id="Screening_list_space">
+        <div id="C_rightspace">
+          <div id="switching">
+            <div class="tab-button borderRight active" onclick="switchTab(1)">上映中作品</div>
+            <div class="tab-button borderLeft" onclick="switchTab(2)">上映予定作品</div>
+          </div>
+          <div id="load-moreIn">
+
+            <div id="Screening_list">
+
+              <!-- 上映中作品 -->
+              <div id="tab1" class="tab-content active-tab">
+                {% for movie in movies %}
+                <div class="works">
+                  <a href="{{ url_for('views.moviedetail', movie_id=movie.MovieID) }}">
+                    <figure>
+                      <img src="{{ url_for('static', filename='images/movieimages/' + movie.MovieImageLength) }}" alt="{{ movie.MovieTitle }}"/>
+                    </figure>
+                    <p>{{ movie.MovieTitle }}</p>
+                  </a>
+                </div>
+                {% endfor %}
+              </div>
+              
+
+              <!-- 公開予定作品 -->
+              <div id="tab2" class="tab-content" >
+                {% for movie in upcoming_movies %}
+                <div class="works">
+                  <a href="{{ url_for('views.moviedetail', movie_id=movie.MovieID) }}">
+                    <figure>
+                      <img src="{{ url_for('static', filename='images/movieimages/' + movie.MovieImageLength) }}" alt="{{ movie.MovieTitle }}"/>
+                    </figure>
+                    <p>{{ movie.MovieTitle }}</p>
+                  </a>
+                </div>
+                {% endfor %}
+              </div>
+
+            </div>
+
+            <button id="load-more">もっと見る</button>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      
+      <!-- -----------ニュース＆キャンペーン----------- -->
+      <div id="news_campaign">
+        <h5 id="news_header">NEWS & キャンペーン</h5>
+        <div id="adjust">
+          <div id="news">
+
+            <div class="news_space">
+              <p class="day">
+                [2024年05月16日]
+              </p>
+              <p class="content">
+                <a href="{{ url_for('views.newsdetail') }}">
+                  5/24(金)より『名探偵コナン 100万ドルの五稜星』“英語字幕版上映”決定！
+                </a>
+              </p>
+            </div>
+
+            <!-- <div class="news_space">
+              <p class="day">
+                [2024年05月16日]
+              </p>
+              <p class="content">
+                <a href="#">
+                  5/24(金)より『名探偵コナン 100万ドルの五稜星』“英語字幕版上映”決定！ミッドランドシネマ ドーナツ ファクトリーにて5月1日（水）より
+                </a>
+              </p>
+            </div>
+
+            <div class="news_space">
+              <p class="day">
+                [2024年05月16日]
+              </p>
+              <p class="content">
+                <a href="#">
+                  5/24(金)より『名探偵コナン 100万ドルの五稜星』“英語字幕版上映”決定！
+                </a>
+              </p>
+            </div>
+
+            <div class="news_space">
+              <p class="day">
+                [2024年05月16日]
+              </p>
+              <p class="content">
+                <a href="#">
+                  5/24(金)より『名探偵コナン 100万ドルの五稜星』“英語字幕版上映”決定！
+                </a>
+              </p>
+            </div> -->
+
+          </div>
+
+
+        </div>
+      </div>
+
+
+      <div id="campaign_space">
+            
+        <div class="ittan">
+          <a href="#">
+            <figure>
+              <img src="{{url_for('static', filename='images/sampleB.jpg')}}" alt="sampleB">
+            </figure>
+          </a>
+        </div>
+        
+        <div class="ittan">
+          <a href="#">
+            <figure>
+              <img src="{{url_for('static', filename='images/sampleB.jpg')}}" alt="sampleB">
+            </figure>
+          </a>
+        </div>
+        
+        <div class="ittan">
+          <a href="#">
+            <figure>
+              <img src="{{url_for('static', filename='images/sampleB.jpg')}}" alt="sampleB">
+            </figure>
+          </a>
+        </div>
+        
+      </div>
+
+
+
+
+
+
+      <footer>
+        <div class="logo">
+          <i class="fa fa-picture-o" aria-hidden="true"></i>
+        </div>
+        <ul>
+          <li><a href="{{url_for('index')}}">トップ</a></li>
+          <li><a href="top.html#news_campaign">お知らせ</a></li>
+          <li><a href="{{url_for('views.screen')}}">スクリーンスペック</a></li>
+          <li><a href="{{url_for('views.sitemap')}}">サイトマップ</a></li>
+        </ul>
+      
+        <div class="secondary-links">
+        
+          <ul class="social">
+            <li><a href="#">
+              <i class="fa fa-github"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-twitter"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-codepen"></i>
+            </a></li>
+          </ul>
+        </div>
+      </footer>
+    </main>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="{{url_for('static', filename='/js/top.js')}}"></script>
+
+  </body>
+
+</html>

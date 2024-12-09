@@ -1,0 +1,38 @@
+/* フォント */
+main {
+    font-family: "Kaisei Decol", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  /* 上下の配色設定 */
+.wrap ,main footer{
+  background-color: rgb(193, 151, 231);
+  opacity: 0.7;
+}
+/* 横navタグの配色 */
+.nav{
+  background-color: palevioletred;
+  opacity: 0.6;
+}
+/* 横navのhover */
+nav ul.navwrap li a:hover{
+  color: rgb(118, 118, 255);
+  transform: translateY(-5px) ;
+  transition: .3s;
+
+}
+/* 〇HALのhover */
+main .space_2 label:hover{
+  opacity: 0.6;
+}
+main .s_titleWrap{
+  color: rgb(138, 138, 252);
+}
+
+/* フッターのhover inline-blockを足さないと動かない*/
+main footer ul li a:hover {
+  display: inline-block;
+  color: rgb(250, 139, 176) ;
+  transform: translateY(-3px);
+  transition: .3s;
+}

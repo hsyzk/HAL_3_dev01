@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>映画詳細</title>
+    
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/moviedetail.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='js/common.js')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='js/moviedetail.js')}}">
+
+
+  </head>
+  <!-- menu checkbox周りを<>で囲う際はbodyないのものすべてを囲まないと設定したアニメーションが動かなくなります -->
+  <body>
+    <div class="wrap">
+
+      <div><a href="{{ url_for('index') }}"><img src="{{url_for('static', filename='images/logo2.png')}}"></a></div>
+    </div>
+    <input type="checkbox" id="menu" checked/>
+    <label for="menu" class="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav">
+      <ul class="navwrap">
+
+        {% if current_user.is_authenticated %}
+        <li class="hoverli"><a href="{{ url_for('signout') }}">ログアウト</a></li>
+        <li class="hoverli"><a href="{{ url_for('memberinfo') }}">マイページ</a></li>
+        {% else %}
+        <li class="hoverli"><a href="{{ url_for('signin') }}">ログイン</a></li>
+        {% endif %} 
+
+        <li><a href="{{ url_for('index') }}">トップページ</a></li>
+        <li>
+          <div >
+            <a href="{{ url_for('views.movielist') }}">上映中一覧</a>
+            <ul>
+              <li><a href="{{ url_for('views.movielist_h') }}" style="padding-top: 0.1vw;"><span>H</span>orror</a></li>
+              <li><a href="{{ url_for('views.movielist_a') }}"><span>A</span>ction</a></li>
+              <li><a href="{{ url_for('views.movielist_l') }}"><span>L</span>ove</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="{{ url_for('views.cominglist') }}">公開予定</a></li>
+        <li><a href="{{ url_for('views.ticketdetail') }}">チケット代金</a></li>
+        <li><a style="padding: 0.7vw 0.9vw; font-size:1vw;" href="{{ url_for('views.screen') }}">スクリーンスペック</a></li>
+        <li><a style="padding: 0.7vw 1.1vw;" href="{{ url_for('views.sitemap') }}">サイトマップ</a></li>
+      </ul>
+    </nav>
+    <div class="backimg"><img src="{{url_for('static', filename='images/eigakan2.jpg')}}" alt=""></div>
+    
+    
+    <main>
+      <!-- spaceはnavの帳尻合わせのために作ってる -->
+      <div class="space"></div>
+
+
+
+
+      <div id="detailwrap">
+        <div>
+            <ul>
+                <li id="thumbnail">
+                    <div><img src="{{ url_for('static', filename='images/movieimages/' + movie.MovieImageSide) }}" alt="{{ movie.MovieTitle }}"></div>
+                </li>
+            </ul>
+    
+            <div id="Synopsis">
+                <section style="flex-flow: column;">
+                    <h2>{{ movie.MovieTitle }}</h2>
+                    <ul style="width: 400px;">
+                        <li style="width: 20%;">監督</li>
+                        <li style="width: 80%;" >{{ movie.MD }}</li>
+                    </ul>
+                    <div>
+                        <ul style="margin-top: -3%;">
+                            <li style="width: 40%;"><p>上映時間</p></li>
+                            <li style="width: 60%;"><p>{{ movie.ShowTimes }}分</p></li>
+                        </ul>
+                        <ul style="margin: -3% 0 0 -10%">
+                            <li style="width: 55%;"><p>レーティング</p></li>
+                            <li style="width: 45%;"><p>{{ movie.agelimit.AgeLimit }}</p></li>
+                        </ul>
+                    </div>
+                </section>
+                <h2>{{ movie.Overview[:320] }}{% if movie.Overview|length > 50 %}...{% endif %}</h2>
+            </div>
+        </div>
+    </div>
+    
+    <div id="schedule">
+      <h2>上映スケジュール</h2>
+      <span>
+        <div id="scheduleday">
+          {% for date in showings_by_date.keys() %}
+            <div>
+              <a href="#">
+                <span>
+                  <p class="day" data-date="{{ format_japanese_day(date) }}">{{ format_japanese_day(date) }}</p> 
+                  <p></p>
+                </span>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+          
+
+        <div id="scheduletime">
+          <div class="screenbody">
+            {% for date, showings_for_date in showings_by_date.items() %}
+                <section class="showtime-section" data-date="{{ format_japanese_day(date) }}" style="display: none;">
+                    <div class="screenwrap">
+                        {% for showing in showings_for_date %}
+                          <div>
+                            <h6>スクリーン{{ showing.screen.ScreenID }}</h6>
+                            <div class="showing-item">
+                                <a href="{{ url_for('views.SeatSelect', showing_id=showing.ShowingID, date=date) }}">
+                                  <p class="time">
+                                      <span class="starttime">{{ showing.showtime.start_time.strftime('%H:%M') }}</span>
+                                      ~ <span class="endtime">{{ showing.end_time.strftime('%H:%M') }}</span>
+                                  </p>
+                                </a>
+                            </div>
+                          </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endfor %}
+        
+
+            {% if not movie.showing %}
+              <p class="coment_a">公開中予定作品です。上映スケジュールはありません。</p>
+            {% endif %}
+          </div>
+        </div>
+
+<!-- 
+        <div id="scheduletime">
+          <div class="screenbody">
+            {% for showing in movie.showing %}
+              <section>
+                  <h6>スクリーン{{ showing.screen.ScreenID}}</h6>
+                  <div class="screenwrap">
+                      <div>
+                          <a href="{{ url_for('views.SeatSelect', showing_id=showing.ShowingID) }}">
+                              <p class="time"><span class="starttime">{{ showing.showtime.start_time.strftime('%H:%M') }}</span></p>
+                              <p class="info">{{ showing.Info }}</p>
+                              <p class="status">{{ showing.Status }}</p>
+                          </a>
+                      </div>
+                  </div>
+              </section>
+            {% endfor %}
+
+            {% if not movie.showing %}
+            <p class="coment_a">公開中予定作品です。</p>
+            {% endif %}
+          </div>
+        </div>
+      </span> -->
+
+    </div>
+    
+      
+
+
+
+      <footer>
+        <div class="logo">
+          <i class="fa fa-picture-o" aria-hidden="true"></i>
+        </div>
+        <ul>
+          <li><a href="{{url_for('index')}}">トップ</a></li>
+          <li><a href="{{url_for('index')}}#news_campaign">お知らせ</a></li>
+          <li><a href="{{url_for('views.screen')}}">スクリーンスペック</a></li>
+          <li><a href="{{url_for('views.sitemap')}}">サイトマップ</a></li>
+        </ul>
+      
+        <div class="secondary-links">
+        
+          <ul class="social">
+            <li><a href="#">
+              <i class="fa fa-github"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-twitter"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-codepen"></i>
+            </a></li>
+          </ul>
+        </div>
+      </footer>
+    </main>
+
+  <script src="{{url_for('static', filename='/js/moviedetail.js')}}"></script>
+  </body>
+
+</html>

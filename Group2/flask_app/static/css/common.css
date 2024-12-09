@@ -1,0 +1,379 @@
+@charset "utf-8";
+html {
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-weight: 300;
+  line-height: 1.75;
+  color: #444;
+  overflow-x: hidden;
+}
+
+/* ハンバーガーメニュー周り */
+.menu {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 3vw;
+  height: 3vw;
+  margin-left: 2%;
+  margin-top: 0.3%;
+  border-radius: 50%;
+  transition: transform 250ms ease;
+  cursor: pointer;
+  z-index: 300;
+}
+.menu span {
+  position: relative;
+  display: block;
+  width: 50%;
+  height: 0.1vw;
+  background-color: #fff;
+  float: left;
+  transform-origin: center center;
+  transition: transform 250ms ease;
+  z-index: 200;
+}
+.menu span:nth-of-type(1) {
+  transform: translateY(-5px);
+}
+.menu span:nth-of-type(3) {
+  transform: translateY(5px);
+}
+
+#menu {
+  display: none;
+}
+/* ここでハンバーガーメニューが押されたときに動作する部分 */
+#menu:checked ~ .menu {
+  background-color: transparent;
+  transform: rotate(360deg);
+  transition: transform 250ms ease;
+}
+#menu:checked ~ .menu span {
+  background-color: white;
+  transition: transform 250ms ease;
+}
+#menu:checked ~ .menu span:nth-of-type(1) {
+  transform: translateY(1px) rotate(45deg);
+}
+#menu:checked ~ .menu span:nth-of-type(2) {
+  display: none;
+}
+#menu:checked ~ .menu span:nth-of-type(3) {
+  transform: translateY(-1px) rotate(-45deg);
+}
+#menu:checked ~ .nav {
+  left: 0px;
+  transition: left 500ms ease;
+}
+#menu:checked ~ main {
+  transform: translateX(10%);
+  margin-left: 1.8%;
+  width: 90%;
+  transition: transform 500ms ease;
+}
+
+/* nav */
+.wrap{
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  height: 3vw;  
+  background-color: rgba(34, 0, 0,0.8);
+  z-index: 200;
+}
+.wrap div{
+  width: 10vw;
+  margin-left: 5%;
+  z-index: 300;
+}
+.wrap div img{
+object-fit: cover;
+width: 100%;
+height: 100%;
+}
+.nav {
+  position: fixed;
+  top: 0;
+  left: -11%;
+  width: 11%;
+  height: 100vh;
+  margin: 0;
+  padding: 3.5% 0 0 0;
+  background-color: rgb(2, 2, 38);
+  transition: left 500ms ease;
+  z-index: 100;
+}
+nav ul.navwrap{
+  position: relative;
+  list-style-type: none;
+}
+nav ul.navwrap li{
+  position: relative;
+}
+nav ul.navwrap li div{
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+nav ul.navwrap li div h6{
+  color: #fff;
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0.7vw 1.5vw;
+  font-size: 1.15vw;
+}
+nav ul.navwrap li div ul{
+  margin-left: 18%;
+  width: 82%;
+}
+nav ul.navwrap li div ul li {
+  display: block;
+  width: 100%;
+}
+nav ul.navwrap li a{
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0.7vw 1.5vw;
+  color: white;
+  font-size: 1.15vw;
+  font-weight: bold;
+  text-decoration: none;
+  
+}
+nav ul.navwrap li a:hover{
+  color: #ea0a51;
+}
+nav ul.navwrap li div ul li a{
+  position: relative;
+  color: white;
+  font-size: 0.9vw;
+  line-height: 8.5%;
+}
+nav ul.navwrap li div ul li a:hover span {
+  color: #fd4b4b;
+}
+nav ul.navwrap li div ul li a span{
+  position: relative;
+  color: white;
+  font-size: 1.1vw;
+  line-height: 8.5%;
+}
+/* navによって見えない部分を消す */
+.space{
+  height: 2.6vw;;
+}
+
+
+main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0;
+  transform: translateX(0px);
+  transition: transform 500ms ease;
+  z-index: 0;
+}
+main footer {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 20px 20px 20px;
+  background-color: rgba(34, 0, 0 ); 
+  margin-top: auto;
+}
+main footer::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+main footer .logo {
+  font-size: 28px;
+  color: whitesmoke;
+  line-height: 0;
+  margin-bottom: 8px;
+  margin-right: 4px;
+}
+@media screen and (min-width: 1024px) {
+  main footer .logo {
+    float: left;
+    margin-bottom: 0;
+  }
+}
+main footer ul {
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+main footer ul::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+@media screen and (min-width: 1024px) {
+  main footer ul {
+    float: left;
+    line-height: 1.8;
+    margin-bottom: 0;
+    margin-left: 16px;
+  }
+}
+main footer ul li {
+  list-style: none;
+  padding-right: 16px;
+}
+@media screen and (min-width: 1024px) {
+  main footer ul li {
+    display: inline;
+    text-align: left;
+  }
+}
+main footer ul li a {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+main footer ul li a:focus, main footer ul li a:hover {
+  color: #fd4b4b;
+}
+@media screen and (min-width: 1024px) {
+  main footer .secondary-links {
+    float: right;
+  }
+}
+main footer .secondary-links li a {
+  font-size: 12px;
+  font-weight: 100 !important;
+}
+main footer .secondary-links .social {
+  margin: 1em 0 0 0;
+}
+@media screen and (min-width: 1024px) {
+  main footer .secondary-links .social {
+    float: right;
+    margin-top: 0;
+  }
+}
+main footer .secondary-links .social li {
+  float: left;
+  font-size: 1em;
+  line-height: 0;
+  margin: 0;
+  padding-right: 0.7em;
+}
+main footer .secondary-links .social li:last-child {
+  padding-right: 0;
+}
+main footer .secondary-links .social li > a {
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+}
+main footer .secondary-links .social li > a:hover {
+  background-color: white;
+}
+.backimg{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    /* z-index: -1; */
+    
+}
+@media (min-width: 769px) {
+  .backimg img{
+      width: auto;
+      height: 100%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .backimg img{
+      width: 100%;
+      height: auto;
+  }
+}
+
+
+/* カーテンコール */
+#wrap::before,#wrap::after{
+  position: fixed;
+  z-index: 1;
+  top: -15%;
+  display: block;
+  visibility: hidden;
+  z-index: 600;
+  width: 50%;
+  height: 130%;
+  content: '';
+  background-color: #a20f0a;
+}
+#wrap::before{
+  left: 0;
+  animation : curtain_l 2s;
+　-webkit-animation : curtain_l 2s;
+}
+#wrap::after{
+  right: 0;
+  animation : curtain_r 2s;
+　-webkit-animation : curtain_r 2s;
+}
+
+@keyframes curtain_l{
+  0%{visibility: visible;}
+  20%{transform: rotate(0deg) translateX(0%); background-color: #781411;}
+  60%{transform: rotate(6deg) translateX(-50%);}
+  80%{opacity: 1;}
+  100%{transform: rotate(0deg) translateX(-100%); opacity:0; visibility: hidden;}
+}
+@-webkit-keyframes curtain_l{
+  0%{visibility: visible;}
+  20%{-webkit-transform: rotate(0deg) translateX(0%); background-color: #b51712;}
+  60%{-webkit-transform: rotate(6deg) translateX(-50%);}
+  80%{opacity: 1;}
+  100%{-webkit-transform: rotate(0deg) translateX(-100%); opacity:0; visibility: hidden;}
+}
+@keyframes curtain_r{
+  0%{ visibility: visible;}
+  20%{transform: rotate(0deg) translateX(0%); background-color: #781411;}
+  60%{transform: rotate(-6deg) translateX(50%);}
+  80%{opacity: 1;}
+  100%{transform: rotate(0deg) translateX(100%); opacity:0; visibility: hidden;}
+}
+@-webkit-keyframes curtain_r{
+  0%{visibility: visible;}
+  20%{-webkit-transform: rotate(0deg) translateX(0%); background-color: #b51712;}
+  60%{-webkit-transform: rotate(-6deg) translateX(50%);}
+  80%{opacity: 1;}
+  100%{-webkit-transform: rotate(0deg) translateX(100%); opacity:0; visibility: hidden;}
+}

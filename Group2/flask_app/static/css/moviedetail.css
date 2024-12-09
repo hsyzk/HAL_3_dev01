@@ -1,0 +1,252 @@
+main {
+  box-shadow: none;
+  overflow: hidden;
+}
+main footer {
+  margin-top: auto;
+}
+main #detailwrap {
+  width: 90%;
+  margin: 4.5% auto;
+  background-color: rgb(2, 2, 38);
+  color: #fff;
+  border-radius: 5px;
+}
+main #detailwrap div {
+  height: 28vw;
+  display: flex;
+}
+main #detailwrap div ul {
+  width: 45%;
+}
+main #detailwrap div ul li {
+  flex-grow: 1;
+  display: inline-block;
+}
+main #detailwrap div ul li#thumbnail {
+  margin-left: 1.5%;
+  position: relative;
+  align-items: center;
+  list-style: none;
+  width: 100%;
+  height: 100%;
+}
+main #detailwrap div ul li#thumbnail div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  width: 100%;
+  height: 90%;
+}
+main #detailwrap div ul li#thumbnail div img {
+  /*コレ*/
+  max-width: 100%;
+  /*コレ*/
+  height: auto;
+  object-fit: contain;
+}
+main #detailwrap div #Synopsis {
+  flex-flow: column;
+  width: 55%;
+}
+main #detailwrap div #Synopsis h2 {
+  height: 70%;
+  font-size: 1.15vw;
+  font-weight: 400;
+  padding: 3% 3% 0 3%;
+  text-align: justify;
+}
+main #detailwrap div #Synopsis section {
+  display: flex;
+  height: 30%;
+}
+main #detailwrap div #Synopsis section h2 {
+  font-size: 1.5vw;
+  font-weight: 800;
+  text-align: justify;
+}
+main #detailwrap div #Synopsis section ul {
+  padding: 1% 3% 0 3%;
+  display: flex;
+}
+main #detailwrap div #Synopsis section ul li {
+  font-size: 1.3vw;
+  font-weight: 800;
+}
+main #detailwrap div #Synopsis section div {
+  padding-top: 3%;
+}
+main #detailwrap div #Synopsis section div ul {
+}
+main #detailwrap div #Synopsis section div ul li {
+}
+main #detailwrap div #Synopsis section div ul li p {
+  font-weight: 100;
+  font-size: 1.1vw;
+}
+main #schedule {
+  background-color: rgb(2, 2, 38);
+  width: 85%;
+  margin: 0 auto 2% auto;
+}
+main #schedule h2 {
+  width: 100%;
+  padding: 0.5% 0 0.5% 1.5%;
+  font-size: 1.3vw;
+  font-weight: 800;
+  text-align: left;
+  color: #ffffff;
+}
+main #schedule span #scheduleday {
+  display: flex;
+  margin: 3% auto;
+  width: 90%;
+  background-color: #4a4a4a;
+}
+main #schedule span #scheduleday div {
+  width: 12vw;
+  height: 8.5vw;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+  background-color: #9a9a9a;
+  cursor: pointer;
+  /* margin: 0 6px 0 0; */
+}
+main #schedule span #scheduleday div:hover {
+  background-color: #6a6a6a;
+}
+main #schedule span #scheduleday div span p {
+  margin: auto;
+  font-size: 1.65vw;
+  width: 90%;
+  font-weight: 800;
+  border-bottom: solid #fff 0.01vw;
+  text-align: center;
+}
+main #schedule span #scheduletime {
+  width: 90%;
+  white-space: nowrap; /* 改行を防止 */
+  background-color: #4a4a4a;
+  margin: 0 auto;
+  margin-bottom: 10%;
+}
+main #schedule span #scheduletime #screenbody {
+  flex-direction: column; /* 縦のレイアウトを維持 */
+  overflow: hidden; /* 縦のスクロールバーを消す */
+  display: flex;
+  flex-wrap: nowrap; /* 要素を1行に並べる */
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px; /* 要素間のスペースを指定 */
+}
+main #schedule span #scheduletime .screenbody section {
+}
+main #schedule span #scheduletime .screenbody section h6 {
+  padding-left: 2%;
+  padding-top: 0.5%;
+  color: #fff;
+  background-color: #4a4a4a;
+}
+main #schedule span #scheduletime .screenbody section .screenwrap {
+  display: flex; /* フレックスボックスを使用 */
+  flex-direction: row; /* 横並びにする */
+  gap: 20px; /* 要素間の間隔を調整 */
+  min-width: 200px; /* 最小幅を設定して横並びを強制 */
+  min-height: 100px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+main #schedule span #scheduletime .screenbody section .screenwrap div {
+  width: 11vw;
+  background-color: #fff;
+  justify-content: center;
+  border-radius: 4px;
+}
+main #schedule span #scheduletime .screenbody section .screenwrap div:hover {
+  background-color: #ddd;
+}
+main #schedule span #scheduletime .screenbody section .screenwrap div a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+  text-align: center;
+  color: #000;
+}
+
+main #schedule span #scheduletime .screenbody section .screenwrap div a:active {
+  color: #b71c1c;
+}
+main #schedule span #scheduletime .screenbody section .screenwrap div a p {
+  margin: 0;
+  font-size: 1vw;
+  font-weight: 400;
+}
+main #schedule span #scheduletime .screenbody section .screenwrap div a p.info {
+  color: #b71c1c;
+}
+main
+  #schedule
+  span
+  #scheduletime
+  .screenbody
+  section
+  .screenwrap
+  div
+  a
+  p.status {
+  font-weight: 600;
+  color: #1976d2;
+  margin-bottom: 2%;
+}
+main
+  #schedule
+  span
+  #scheduletime
+  .screenbody
+  section
+  .screenwrap
+  div
+  a
+  p
+  .starttime {
+  font-size: 1.3vw;
+  font-weight: 700;
+  margin-right: 5%;
+}
+main
+  #schedule
+  span
+  #scheduletime
+  .screenbody
+  section
+  .screenwrap
+  div
+  a
+  p
+  .endtime {
+  font-size: 1.1vw;
+  font-weight: 600;
+  margin-left: 5%;
+  /* color: #9a9a9a; */
+}
+
+.coment_a {
+  color: #fff;
+  background-color: rgb(2, 2, 38);
+}
+
+a {
+  text-decoration: none;
+}
+#scheduleday div a {
+  color: #fff;
+  width: 100%;
+  height: auto;
+}
+#scheduleday div a:active {
+  color: #b71c1c;
+}

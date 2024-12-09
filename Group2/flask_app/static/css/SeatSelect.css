@@ -1,0 +1,185 @@
+body{
+    min-width: 1000px;
+    position: relative;
+    overflow: auto;
+}
+
+.seat-map {
+    display: flex;
+    justify-content: center; /* 水平方向の中央揃え */
+    align-items: center; /* 垂直方向の中央揃え */
+    height: 70vh; /* 画面全体の高さにする */
+}
+
+.seat-map table {
+    border-collapse: separate; 
+    border-spacing: 10px 5px;
+    table-layout: fixed; /* 均等な幅のセルにする */
+    width: auto; /* テーブルの幅を内容に合わせて自動調整 */
+}
+
+.seat-cell { 
+    padding: 5px;
+}
+
+.seat {
+    width: 100%; /* セルの幅いっぱいに広げる */
+    height: 30px;
+    background-color: #ccc; 
+    border: 1px solid #aaa;
+    cursor: pointer;
+    text-align: center; /* 席番号を中央に */
+}
+
+.seat.selected {
+    background-color: #f00; 
+}
+
+.seat.reserved {
+    background-color: #aaa; 
+    cursor: not-allowed;
+}
+
+.screen {
+    width: 50%;
+    height: 30px;
+    background-color: #000;
+    margin: 20px auto; /* 上下にマージン、左右は自動 */
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+}
+.screen p{
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.seat-map table {
+    border-collapse: separate; /* セルの間隔を調整 */
+    border-spacing: 10px 5px; /* 上下10px、左右5pxの隙間 */ 
+}
+
+.seat-cell { /* 各座席セルにpaddingを追加 */
+    padding: 5px;
+}
+
+.seat {
+    /* ... 座席のスタイル ... */
+    width: 30px; /* 必要に応じて調整 */
+    height: 30px; /* 必要に応じて調整 */
+    /* ... その他のスタイル ... */
+}
+
+
+/* 通路の空白 */
+
+.wit{
+    margin: 0 0 0 15px;
+}
+.wit_l{
+    background-color: transparent;
+    width: 40px; /* 空白の幅 */
+    height: 100%;
+    border: none;
+}
+.wit_r{
+    background-color: transparent;
+    width: 40px; /* 空白の幅 */
+    height: 100%;
+    border: none;
+}
+
+.empty_space_height{
+    height: 30px;
+}
+.empty_space_width{
+    width: 30px;
+}
+
+/* 座席指定について */
+#select_A{
+    display: flex;
+    flex-direction: column;
+}
+
+#selected-seat{
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+
+.reserve-button {
+    width: 10%;
+    position: relative;
+    height: 45px;
+    margin: 20px auto 0 auto;
+    border: none;
+    border-radius: 22px;
+    background: linear-gradient(to right, #77530a, #ffd277, #77530a, #77530a, #ffd277, #77530a);
+    background-size: 250%;
+    background-position: left;
+    color: #ffd277;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: 1s;
+    overflow: hidden;
+  }
+  
+  .reserve-button::before {
+    position: absolute;
+    color: #ffd277;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 97%;
+    height: 94%;
+    border-radius: 20px;
+    transition-duration: 1s;
+    background-color: rgba(0, 0, 0, 0.8);
+    background-size: 200%;
+    z-index: 1;
+    pointer-events: none; /* クリックイベントを無効化 */
+    opacity: 0.9;
+    margin: 0.5px 0 0 0;
+  }
+  .contentNew::before{
+    content: "予約する";
+  }
+  
+  
+  .reserve-button:hover::before {
+    background-position: right;
+    transition-duration: 1s;
+  }
+  
+  .reserve-button:hover {
+    background-position: right;
+    transition-duration: 1s;
+  }
+
+
+
+
+
+#aisle_left{
+    width: 100px;
+    height: 300px;
+    margin: 65px 5px 0px -155px;
+}
+#aisle_left_a{
+    width: 100px;
+    height: 300px;
+    margin: 130px 5px 0px -25px;
+}
+#aisle_left_b{
+    width: 100px;
+    height: 300px;
+    margin: 130px 5px 0px 30px;
+}
+#aisle_right{
+    width: 100px;
+    height: 300px;
+    margin: 130px 5px 0px 5px;
+}

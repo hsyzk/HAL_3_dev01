@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>サイトマップページ</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sitemap.css')}}">
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+    
+
+  </head>
+  <!-- menu checkbox周りを<>で囲う際はbodyないのものすべてを囲まないと設定したアニメーションが動かなくなります -->
+  <body>
+    <div class="wrap">
+      <div><a href="{{ url_for('index') }}"><img src="{{url_for('static', filename='images/logo2.png')}}"></a></div>
+    </div>
+    <input type="checkbox" id="menu" checked/>
+    <label for="menu" class="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav">
+      <ul class="navwrap">
+        {% if current_user.is_authenticated %}
+        <li class="hoverli"><a href="{{ url_for('signout') }}">ログアウト</a></li>
+        <li class="hoverli"><a href="{{ url_for('memberinfo') }}">マイページ</a></li>
+        {% else %}
+        <li class="hoverli"><a href="{{ url_for('signin') }}">ログイン</a></li>
+        {% endif %} 
+        <li><a href="{{ url_for('index') }}">トップページ</a></li>
+        <li>
+          <div >
+            <a href="{{ url_for('views.movielist') }}">上映中一覧</a>
+            <ul>
+              <li><a href="{{ url_for('views.movielist_h') }}" style="padding-top: 0.1vw;"><span>H</span>orror</a></li>
+              <li><a href="{{ url_for('views.movielist_a') }}"><span>A</span>ction</a></li>
+              <li><a href="{{ url_for('views.movielist_l') }}"><span>L</span>ove</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="{{ url_for('views.cominglist') }}">公開予定</a></li>
+        <li><a href="{{ url_for('views.ticketdetail') }}">チケット代金</a></li>
+        <li><a style="padding: 0.7vw 0.9vw; font-size:1vw;" href="{{ url_for('views.screen') }}">スクリーンスペック</a></li>
+        <li><a style="padding: 0.7vw 1.1vw;" href="{{ url_for('views.sitemap') }}">サイトマップ</a></li>
+      </ul>
+    </nav>
+    <div class="backimg"><img src="{{url_for('static', filename='images/eigakan2.jpg')}}" alt=""/div>
+    
+    <div class="backimg"><img src="{{url_for('static', filename='images/eigakan2.jpg')}}" alt=""></div>
+    
+    <main>
+      <!-- spaceはnavの帳尻合わせのために作ってる -->
+      <div class="space"></div>
+
+        <!-- ここから -->
+      <div id="mapback">
+        <h1>サイトマップ</h1>
+        
+        <div id="mapback2">
+          <div class="eigaf">
+            <h2>ホーム</h2>
+          </div>
+          <div class="eigafa">
+            <h2>映画上映情報</h2>
+          </div>
+          <br />
+            <div class="pad">
+              <a href="{{ url_for('index') }}">Home</a>
+            </div>
+            
+            <div class="pad2">
+              <a href="{{ url_for('views.movielist') }}">上映中作品一覧</a>
+            </div>
+
+            <div class="pad3">
+              <a href="{{ url_for('views.cominglist') }}">公開予定作品一覧</a>
+            </div>
+
+          <div class="eigaf">
+            <h2>映画館情報</h2>
+          </div>
+          <div class="eigafa2">
+            <h2>チケット</h2>
+          </div>
+          <br />
+          
+          <div class="pad">
+            <a href="{{ url_for('views.screen') }}">スクリーンスペック</a>
+          </div>
+          <div class="pad4">
+            <a href="{{ url_for('views.ticketdetail') }}">チケット詳細情報</a>
+          </div>
+        </div>
+
+      </div> 
+      <footer>
+        <div class="logo">
+          <i class="fa fa-picture-o" aria-hidden="true"></i>
+        </div>
+        <ul>
+          <li><a href="{{url_for('index')}}">トップ</a></li>
+          <li><a href="{{url_for('index')}}l#news_campaign">お知らせ</a></li>
+          <li><a href="{{url_for('views.screen')}}">スクリーンスペック</a></li>
+          <li><a href="{{url_for('views.sitemap')}}">サイトマップ</a></li>
+        </ul>
+    
+        <div class="secondary-links">
+    
+          <ul class="social">
+            <li><a href="#">
+              <i class="fa fa-github"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-twitter"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-codepen"></i>
+            </a></li>
+          </ul>
+        </div>
+      </footer>
+    </main>
+  </body>
+
+</html>

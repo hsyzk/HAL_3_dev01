@@ -1,0 +1,181 @@
+/* ここから追記-近藤 */
+
+.backimg{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  /* z-index: -1; */
+  
+}
+.backimg img{
+  width: 100%;
+  height: auto;
+}
+.screenh1{
+  display: flex;
+  justify-content: center;
+}
+.screenh1 h1{
+  margin-top: 5%;
+  font-size:30px ;
+  border-radius:8px ;
+  color: rgb(254, 254, 151);
+  opacity: 0.9;
+  
+}
+
+main table{
+  position: relative;
+  margin-left: 20%;
+  margin-top: 3%;
+  
+  width: 60%;
+}
+table thead th{
+	border-radius:18px 0 0 0; 
+}
+table thead td:last-child{
+	border-radius:0 18px 0 0; 
+}
+table tbody tr:last-child th{
+	border-radius:0 0 0 18px; 
+}
+main table th , td{
+  text-align: center;
+  border-bottom: 1px solid #111211;
+  vertical-align:middle;
+}
+/* 角丸の設定 */
+main table th.maru1{
+  border-right:none;
+  border-right:solid 1px ;
+  border-radius:8px 0 0 0; 
+}
+main table th.maru2{
+  border-right:none;
+  border-radius:0 8px 0 0; 
+}
+main table td.maru3{
+  border-right:none;
+  border-radius:0 0 0 8px; 
+}
+main table td.maru4{
+  border-right:none;
+  border-radius:0 0 8px 0; 
+}
+main table th{
+  border-right: solid 1px;
+  padding-top: 1.5%;
+  padding-bottom: 1.5%;
+}
+main table tr {
+  background-color: white;
+}
+main table td{
+  border-bottom: 1px solid #111211;
+  padding-top: 3%;
+  padding-bottom: 2.5%;
+}
+
+/* 画像モーダル */
+
+
+
+/* モーダルを開くボタン */
+.modal__trigger {
+  cursor: pointer;
+  color: rgb(127, 182, 255);
+  font-size: 1.2rem;
+}
+.modal__trigger:hover{
+  opacity: 0.8;
+  color: red;
+  transform: translate(0,-5px);
+  transition: 0.5s;
+
+}
+
+.modal__trigger:nth-child(n + 2) {
+  margin-top: 60px;
+}
+
+/* モーダル本体 */
+.modal__wrapper {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__layer {
+  position: relative;
+  height: 100%;
+  background: rgba(50, 50, 50, .85);
+  cursor: pointer;
+  z-index: 301;
+}
+
+.modal__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(calc(100% - 40px), 900px);
+  background: #fff;
+  z-index: 302;
+}
+
+.modal__inner {
+  position: relative;
+  height: 100%;
+  padding: 3% 5% 5%;
+}
+
+/* モーダルを閉じるボタン */
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  background: rgba(50, 50, 50, 1);
+  cursor: pointer;
+  transition: opacity .6s;
+}
+
+.modal__close:hover {
+  opacity: .6;
+}
+
+.modal__close:before,
+.modal__close:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 1px;
+  background: #fff;
+  content: '';
+}
+
+.modal__close:before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.modal__close:after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* モーダル内のコンテンツ */
+.modal__content p img {
+  width: 60%;
+}
+
+.modal__text {
+  margin-top: 30px;
+  line-height: 2.875;
+}
+/* ここまで */
+

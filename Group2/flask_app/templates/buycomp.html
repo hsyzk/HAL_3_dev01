@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>購入完了ページ</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+    
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+    
+    <link rel="stylesheet" href="{{url_for('static', filename='css/stepbar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/buycomp.css')}}">
+
+  </head>
+  <!-- menu checkbox周りを<>で囲う際はbodyないのものすべてを囲まないと設定したアニメーションが動かなくなります -->
+  <body>
+    <div class="wrap">
+      <div><a href="{{ url_for('index') }}"><img src="{{url_for('static', filename='images/logo2.png')}}"></a></div>
+    </div>
+   
+      
+    <div class="backimg"><img src="{{url_for('static', filename='images/eigakan2.jpg')}}" alt=""></div>
+
+    <main>
+
+      <!-- spaceはnavの帳尻合わせのために作ってる -->
+      <div class="space"></div>
+        <!-- ここからkondo -->
+        <!-- 〇バー -->
+            <ul class="progressbar">
+              <li class="complete">チケット情報</li>
+              <li class="complete">お支払入力</li>
+              <li class="active">購入完了</li>
+            </ul>
+        <!-- 〇バー ここまで -->
+        <div id="compwrap">
+          <h2>ご購入ありがとうございました。</h2><br />
+          <div class="button-wrap">
+
+            <div class="p-color">
+              <p>購入したチケット情報は </p>
+            </div>
+            <div class="light-button">
+              <!-- htmlを入れる -->
+              <button class="bt">
+                <div class="light-holder">
+                  <div class="light"></div>
+                </div>
+                <div class="button-holder">
+              
+                  <a href="{{ url_for('memberinfo') }}">マイページ</a>
+                </div>
+              </button>
+            </div>
+            <div class="p-color2">
+              <p>から閲覧が可能です。</p>
+            </div>
+          </div>
+
+        </div>
+        <button class="Btn">
+          <a href="{{ url_for('index') }}"></a>
+        </button>
+    </main>
+  </body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ログインページ</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.js')}}">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sign.css')}}">
+    
+
+  </head>
+  <!-- menu checkbox周りを<>で囲う際はbodyないのものすべてを囲まないと設定したアニメーションが動かなくなります -->
+  <body>    
+    
+    <main>
+      <!-- spaceはnavの帳尻合わせのために作ってる -->
+      <div class="space"></div>
+      
+      <div class="signwrap">
+        <div class="sign_logo">
+          <img src="{{url_for('static', filename='images/logo2.png')}}" alt="ロゴ">
+        </div>
+
+        <div class="div_signin">
+          <h1>ログイン</h1>
+            <form method="post" id="flexmod">
+              {{ form.hidden_tag() }}
+
+              <div class="inputTextin">
+                <b>ユーザーID</b>
+                <div class="mid">
+                  {{ form.name(class_='fieldSize') }}
+                </div>
+              </div>
+              <div class="inputTextin">
+                <b>パスワード</b>
+                <div class="mid">
+                  {{ form.password(class_='fieldSize') }}
+                </div>
+                <a id="passForget" href="#">パスワードを忘れた方はこちら</a>
+              </div>
+              <div id="loginBtn">
+                <div class="inputWrap contentLogin">
+                  {{ form.submit(class_='btnColor') }}
+                </div>
+              </div>
+              
+            </form>
+          <hr>
+          <a href="{{ url_for('signup') }}"><button class="buttonStyle contentNew"></button></a>
+        </div>
+      </div>
+
+    </main>
+  </body>
+
+</html>

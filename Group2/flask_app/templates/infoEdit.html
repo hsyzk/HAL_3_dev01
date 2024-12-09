@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>お客様情報編集</title>
+
+    <link rel="stylesheet" href="{{url_for('static',filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='js/common.js')}}">
+    
+    <link rel="stylesheet" href="{{url_for('static',filename='css/infoEdit.css')}}">
+
+  </head>
+  <!-- menu checkbox周りを<>で囲う際はbodyないのものすべてを囲まないと設定したアニメーションが動かなくなります -->
+  <body>
+    <div class="wrap">
+      <div><a href="{{url_for('top')}}"><img src="{{url_for('static',filename='images/logo2.png')}}"></a></div>
+    </div>
+    <input type="checkbox" id="menu" checked/>
+    <label for="menu" class="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav">
+      <ul class="navwrap">
+        {% if current_user.is_authenticated %}
+        <li class="hoverli"><a href="{{ url_for('signout') }}">ログアウト</a></li>
+        <li class="hoverli"><a href="{{ url_for('memberinfo') }}">マイページ</a></li>
+        {% else %}
+        <li class="hoverli"><a href="{{ url_for('signin') }}">ログイン</a></li>
+        {% endif %} 
+        <li><a href="{{url_for('top')}}">トップページ</a></li>
+        <li>
+          <div >
+            <a href="{{url_for('views.movielist')}}">上映中一覧</a>
+            <ul>
+              <li><a href="{{ url_for('views.movielist_h') }}" style="padding-top: 0.1vw;"><span>H</span>orror</a></li>
+              <li><a href="{{ url_for('views.movielist_a') }}"><span>A</span>ction</a></li>
+              <li><a href="{{ url_for('views.movielist_l') }}"><span>L</span>ove</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="{{url_for('viwes.cominglist')}}">公開予定</a></li>
+        <li><a href="{{url_for('views.ticketDetails')}}">チケット代金</a></li>
+        <li><a style="padding: 0.7vw 0.9vw; font-size:1vw;" href="{{url_for('views.screen')}}">スクリーンスペック</a></li>
+        <li><a style="padding: 0.7vw 1.1vw;" href="{{url_for('views.sitmap')}}">サイトマップ</a></li>
+      </ul>
+    </nav>
+    <div class="backimg"><img src="{{url_for('static', filename='images/eigakan2.jpg')}}" alt=""/div>
+    
+    
+    <main>
+      <!-- spaceはnavの帳尻合わせのために作ってる -->
+      <div class="space"></div>
+
+        <div id="edit">
+
+           <h1>お客様情報編集</h1>
+           <form action="#" method="post"></form>
+                <table>
+                    <tr>
+                        <td><img src="{{url_for('static', filename='images/ICON_1.jpg')}}" alt="画像"></td>
+                        <td><button>画像選択</button></td>
+                    </tr>
+                    <tr>
+                      <td>    
+                        <p>ユーザー名
+                            <input type="text" name="name"></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>メールアドレス
+                            <input type="text" name="mailAddress"></p>
+                      </td>
+                    </tr>
+                </table>
+                <p id="button"><a href="{{url_for('MemberInfo')}}"><input type="button" value="完了" id="buttn"></a></p>
+            </form>
+            
+        </div>
+
+
+        <footer>
+          <div class="logo">
+            <i class="fa fa-picture-o" aria-hidden="true"></i>
+          </div>
+          <ul>
+            <li><a href="{{url_for('top')}}">トップ</a></li>
+            <li><a href="{{url_for('top')}}#news_campaign">お知らせ</a></li>
+            <li><a href="{{url_for('views.screen')}}">スクリーンスペック</a></li>
+            <li><a href="{{url_for('views.sitmap')}}">サイトマップ</a></li>
+          </ul>
+        
+          <div class="secondary-links">
+          
+            <ul class="social">
+              <li><a href="#">
+                <i class="fa fa-github"></i>
+              </a></li>
+              <li><a href="#">
+                <i class="fa fa-twitter"></i>
+              </a></li>
+              <li><a href="#">
+                <i class="fa fa-codepen"></i>
+              </a></li>
+            </ul>
+          </div>
+        </footer>
+    </main>
+  </body>
+
+</html>

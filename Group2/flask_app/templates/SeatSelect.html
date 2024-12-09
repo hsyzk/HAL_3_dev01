@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>座席選択</title>
+
+    <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <link rel="stylesheet" href="../static/css/SeatSelect.css">
+    <link rel="stylesheet" href="../static/js/common.js">
+</head>
+<body>
+    <div class="screen">
+        <p>screen</p>
+    </div>
+    <div class="seat-map" id="seat-map">
+
+        {% if screen_id == 1 %}
+        <figure id="aisle_left">
+            <img src="{{url_for('static', filename='images/slope.png')}}" alt="入口">
+        </figure>
+        {% elif screen_id == 2 %}
+        <figure id="aisle_left_a">
+            <img src="{{url_for('static', filename='images/slope.png')}}" alt="入口">
+        </figure>
+        {% elif screen_id == 3 %}
+        <figure id="aisle_left_b">
+            <img src="{{url_for('static', filename='images/slope.png')}}" alt="入口">
+        </figure>
+        {% endif %}
+        <!-- <table>
+            {% if screen_id == 3 %}
+                スクリーン3はこちら
+            {% elif screen_id == 2 %}
+                スクリーン2はこちら
+            {% else %}
+                その他のスクリーンはこちら
+            {% endif %}
+            
+            {% for seat in seats %}
+                {% if loop.index0 % 20 == 0 %}
+                <tr>
+                {% endif %}
+                <td class="seat reserved" data-seat-id="{{ seat.id }}"> 
+                    {{ seat.row }}{{ seat.number }}
+                </td>
+                {% if loop.index % 20 == 0 or loop.last %}
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </table> -->
+
+        <table>
+            {% if screen_id == 3 %}
+            <tbody id="number3">
+            {% for i in range(10) %}
+                <tr>
+                {% for j in range(20) %}
+
+                    {% if i < 2 and j == 0 %} <!-- 1行目と2行目の左側に空白セルを追加 -->
+                    <td class="wit"></td>
+                    {% endif %}
+
+                    {% if i >= 2 and (j == 2 or j == 18) %} <!-- 2列目と18列目に空白セルを追加 -->
+                    <td class="empty_space_width"></td>
+                    {% endif %}
+
+                    {% set seat = seats[i * 20 + j] if (i * 20 + j) < seats|length else None %}
+                    <td class="seat {{ 'reserved' if seat.reserved }}" data-seat-id="{{ seat.id if seat }}">
+                    {{ seat.row }}{{ seat.number if seat }}
+                    </td>
+                {% endfor %}
+                </tr>
+
+                {% if i == 1%} <!-- 2,3行目の間に空白行を追加 -->
+                <tr class="empty-row">
+                    <td class="empty_space_height"></td>
+                </tr>
+                {% endif %}
+
+            {% endfor %}
+            </tbody> 
+
+            {% elif screen_id == 2 %}
+            <tbody>
+                {% for i in range(10) %}
+                <tr>
+                    <td class="wit_l"></td>
+
+                    {% for j in range(12) %}
+                    
+                      <!-- {% set seat = seats[i * 12 + j] if (i * 12 + j) < seats|length else None %}
+                    <td class="seat {{ 'reserved' if seat.reserved }}" data-seat-id="{{ seat.id if seat }}">
+                        {{ seat.row }}{{ seat.number if seat }}
+                    </td> -->
+
+                    {% set seat = seats[i * 12 + j] if (i * 12 + j) < seats|length else None %}
+                    <td class="seat {{ 'reserved' if seat.reserved }}" data-seat-id="{{ seat.id if seat }}">
+                        {{ seat.row }}{{ seat.number if seat }}
+                    </td>
+                    {% endfor %}
+
+                    <td class="wit_r"></td>
+                </tr>
+
+                {% if i == 1%} <!-- 2,3行目の間に空白行を追加 -->
+                <tr class="empty-row">
+                    <td class="empty_space_height"></td>
+                </tr>
+                {% endif %}
+
+                {% endfor %}
+            </tbody>
+
+            {% elif screen_id == 1 %}
+            <tbody id="number1">
+                {% for i in range(7) %}
+                <tr>
+                    <td class="wit_l"></td>
+                    {% for j in range(10) %}
+                    
+                        {% set seat = seats[i * 10 + j] if (i * 10 + j) < seats|length else None %}
+                        <td class="seat {{ 'reserved' if seat.reserved }}" data-seat-id="{{ seat.id if seat }}">
+                            {{ seat.row }}{{ seat.number if seat }}
+                        </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+            {% endif %}
+        </table>
+        {% if screen_id != 1 %}
+        <figure id="aisle_right">
+            <img src="{{url_for('static', filename='images/slope.png')}}" alt="入口">
+        </figure>
+        {% endif %}
+    </div>
+
+    <input type="hidden" id="showing-id" value="{{ showing_id }}">
+
+    <div id="error-message" style="color: red;"></div>
+
+    <div id="select_A">
+        <p id="selected-seat">選択された座席: </p>
+        <form id="seatForm" action="{{ url_for('views.buyCheck') }}" method="GET">
+            <input type="hidden" name="showing_id" value="{{ showing_id }}">
+            <input type="hidden" name="date" value="{{ date }}">
+            <input type="hidden" name="selected_seats" id="selected-seats" value="">
+            <button type="submit" class="reserve-button contentNew">購入確認へ</button>
+        </form>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="{{url_for('static', filename='/js/SeatSelect.js')}}"></script>
+</body>
+</html>

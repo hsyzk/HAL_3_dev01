@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>カード情報確認ページ</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/reset.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/common.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/paycheck.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/stepbar.css')}}"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/paycheck.js') }}"></script>
+
+    <!-- flatpickrのCSSとJS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div>
+        <a href="{{ url_for('index') }}"
+          ><img
+            src="{{url_for('static', filename='images/logo2.png')}}"
+            alt="ロゴ"
+        /></a>
+      </div>
+    </div>
+
+    <div class="backimg">
+      <img
+        src="{{url_for('static', filename='images/eigakan2.jpg')}}"
+        alt="映画館の画像"
+      />
+    </div>
+
+    <main>
+      <div class="space"></div>
+      <ul class="progressbar">
+        <li class="complete">チケット情報</li>
+        <li class="active">お支払入力</li>
+        <li>購入完了</li>
+      </ul>
+
+      <div id="step-wrap">
+        <!-- カード名義入力フィールド -->
+        <div class="cp_iptxt">
+          <input type="text" placeholder="カード名義" />
+          <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+          <div class="error-message"></div>
+        </div>
+
+        <!-- カード番号入力フィールド -->
+        <div class="cp_iptxt">
+          <input type="text" placeholder="カード番号（-無し16桁）" />
+          <i class="fa fas fa-credit-card fa-lg fa-fw" aria-hidden="true"></i>
+          <div class="error-message"></div>
+        </div>
+
+        <!-- カレンダー形式のカード有効期限入力フィールド -->
+        <div class="cp_iptxt">
+          <input
+            type="text"
+            id="cardExpiry"
+            placeholder="カード有効期限 (MM/YY)"
+          />
+          <i
+            class="fa fa-solid fa-hourglass-start fa-lg fa-fw"
+            aria-hidden="true"
+          ></i>
+          <div class="error-message"></div>
+        </div>
+
+        <!-- セキュリティコード入力フィールド -->
+        <div class="cp_iptxt">
+          <input type="text" placeholder="セキュリティコード" />
+          <i class="fa fa-solid fa-lock fa-lg fa-fw" aria-hidden="true"></i>
+          <div class="error-message"></div>
+        </div>
+
+        <!-- ボタン -->
+        <div class="button-div">
+          <!-- 戻るボタン：モーダルを閉じる -->
+          <button class="btn modal-close">戻る</button>
+
+          <!-- 確認するボタン：モーダルを開いて内容確認、buycomp.htmlへ遷移 -->
+          <button class="btn modal__trigger">確認する</button>
+        </div>
+      </div>
+
+      <!-- モーダルのHTML -->
+      <div class="modal__wrapper">
+        <div class="modal__layer"></div>
+        <div class="modal__container">
+          <div class="modal__inner">
+            <div class="modal__content">
+              <p class="modal__title">入力内容の確認</p>
+              <div class="modal__text">
+                <div class="cp_iptxt">
+                  <input type="text" id="confirmName" readonly />
+                  <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+                </div>
+                <div class="cp_iptxt">
+                  <input type="text" id="confirmCardnum" readonly />
+                  <i
+                    class="fa fas fa-credit-card fa-lg fa-fw"
+                    aria-hidden="true"
+                  ></i>
+                </div>
+                <div class="cp_iptxt">
+                  <input type="text" id="confirmCarddate" readonly />
+                  <i
+                    class="fa fa-solid fa-hourglass-start fa-lg fa-fw"
+                    aria-hidden="true"
+                  ></i>
+                </div>
+                <div class="cp_iptxt">
+                  <input type="text" id="confirmCardcode" readonly />
+                  <i
+                    class="fa fa-solid fa-lock fa-lg fa-fw"
+                    aria-hidden="true"
+                  ></i>
+                </div>
+              </div>
+              <div class="goldbtn">
+                <button class="modal-close" aria-label="モーダルを閉じる">
+                  戻る
+                </button>
+
+                <a
+                  href="{{url_for('views.reserve_seat', selected_seats=selected_seats, showing_id=showing_id, selected_price_info=selected_price_info)}}"
+                  ><button
+                    class="btn modal-ok"
+                    type="button"
+                    aria-label="確認"
+                  ></button
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

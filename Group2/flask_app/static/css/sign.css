@@ -1,0 +1,564 @@
+@charset "utf-8";
+html {
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-weight: 300;
+  line-height: 1.75;
+  color: #444;
+  overflow-x: hidden;
+}
+
+/* ハンバーガーメニュー周り */
+.menu {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 2.8vw;
+  height: 2.8vw;
+  margin-left: 2%;
+  border-radius: 50%;
+  transition: transform 250ms ease;
+  cursor: pointer;
+  z-index: 300;
+}
+.menu span {
+  position: relative;
+  display: block;
+  width: 50%;
+  height: 2px;
+  background-color: #fff;
+  float: left;
+  transform-origin: center center;
+  transition: transform 250ms ease;
+  z-index: 200;
+}
+.menu span:nth-of-type(1) {
+  transform: translateY(-5px);
+}
+.menu span:nth-of-type(3) {
+  transform: translateY(5px);
+}
+
+#menu {
+  display: none;
+}
+/* ここでハンバーガーメニューが押されたときに動作する部分 */
+#menu:checked ~ .menu {
+  background-color: transparent;
+  transform: rotate(360deg);
+  transition: transform 250ms ease;
+}
+#menu:checked ~ .menu span {
+  background-color: white;
+  transition: transform 250ms ease;
+}
+#menu:checked ~ .menu span:nth-of-type(1) {
+  transform: translateY(1px) rotate(45deg);
+}
+#menu:checked ~ .menu span:nth-of-type(2) {
+  display: none;
+}
+#menu:checked ~ .menu span:nth-of-type(3) {
+  transform: translateY(-1px) rotate(-45deg);
+}
+#menu:checked ~ .nav {
+  left: 0px;
+  transition: left 500ms ease;
+}
+#menu:checked ~ main {
+  transform: translateX(10%);
+  width: 90.99%;
+  transition: transform 500ms ease;
+}
+/* navによって見えない部分を消す */
+.space{
+  height: 2.6vw;;
+}
+
+
+main {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transform: translateX(0px);
+  transition: transform 500ms ease;
+  background-image: url(../images/eigakan3.jpg);
+  z-index: 0;
+}
+main footer {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 20px 20px 20px;
+  bottom: 0;
+  background-color: #444;
+}
+main footer::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+main footer .logo {
+  font-size: 28px;
+  color: whitesmoke;
+  line-height: 0;
+  margin-bottom: 8px;
+  margin-right: 4px;
+}
+@media screen and (min-width: 1024px) {
+  main footer .logo {
+    float: left;
+    margin-bottom: 0;
+  }
+}
+main footer ul {
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+main footer ul::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+main div.signwrap{
+  display: flex;
+  width: 70%;
+  height: 70%;
+  margin: 2% auto 5% auto;
+  border-radius: 5px;
+  /* background-color: rgb(185, 252, 252); */
+}
+main div.signwrap div.sign_logo {
+  width: 50%;
+  text-align: right;
+  /* background-color: rgb(237, 250, 191); */
+}
+/* main div.signwrap div.sign_logo figure{
+  width: 80%;
+  text-align: right;
+} */
+main div.signwrap div.sign_logo img{
+  width: 100%;
+  margin: 20% 0 30% 0;
+}
+main div.signwrap div.div_signin {
+    width: 40%;
+    height: 90%;
+    margin: 0 0 4% 0;
+    border-radius: 15px;
+    color: #c7b7b7;
+}
+main div.signwrap div.div_signin h1 {
+    width: 50%;
+    margin: 0 auto 0 auto;
+    padding: 10% 0 0 0;
+    text-align: center;
+    font-size: 200%;
+    font-weight: 1000;
+    /* color: #ffffff;
+    text-shadow:SSS
+    2px 2px 0px #b93737, -2px -2px 0px #b93737,
+  -2px 2px 0px #b93737,  2px -2px 0px #b93737,
+    2px 0px 0px #b93737, -2px  0px 0px #b93737,
+    0px 2px 0px #b93737,  0px 2px 0px #b93737; */
+    color: #ffffff;
+    /* text-shadow:
+    2px 2px 0px #ffffff, -2px -2px 0px #ffffff,
+  -2px 2px 0px #ffffff,  2px -2px 0px #ffffff,
+    2px 0px 0px #ffffff, -2px  0px 0px #ffffff,
+    0px 2px 0px #ffffff,  0px 2px 0px #ffffff; */
+}
+main div.signwrap div.div_signin div.div_signinform {
+    width: 75%;
+    height: 10%;
+    margin: 5% auto 0 auto;
+}
+
+main div.signwrap div.div_signin div.div_signinform input {
+    width: 100%;
+    height: 63%;
+    font-size: 120%;
+    border-radius: 10px;
+}
+
+main div.signwrap div.div_signin a{
+  text-decoration: none;
+}
+
+
+main div.signwrap div.div_signin p {
+    width: 80%;
+    margin: 2% auto 10% auto;
+    text-align: right;
+}
+
+/* main div.signwrap div.div_signin hr {
+    width: 50%;
+    margin: 0 auto 0 auto;
+    border: #808080 solid 1px;
+} */
+
+main div.signwrap div.div_signup {
+  width: 40%;
+  height: 90%;
+  margin: 2% 0 4% 0;
+  color: #c7b7b7;
+  /* border-radius: 15px; */
+  /* background-color: #ffffff; */
+  /* border: #3a3a3a solid 3px; */
+}
+main div.signwrap div.div_signup h1 {
+  width: 50%;
+  margin: -20px auto 0 auto;
+  padding: 3% 0 0 0;
+  text-align: center;
+  font-size: 200%;
+  font-weight: 1000;
+  color: #fff;
+}
+main div.signwrap div.div_signup div.div_signupform {
+  width: 65%;
+  height: 10%;
+  margin: 4% auto 0 auto;
+}
+
+main div.signwrap div.div_signup div.div_signupform input {
+  width: 100%;
+  height: 60%;
+  font-size: 120%;
+  border-radius: 10px;
+}
+
+main div.signwrap div.div_signup a{
+  text-decoration: none;
+}
+
+
+
+
+
+main div.signwrap div.div_signup p {
+  width: 80%;
+  margin: 2% auto 10% auto;
+  text-align: right;
+}
+
+/* main div.signwrap div.div_signup hr {
+  width: 80%;
+  margin: 0 auto 0 auto;
+  border: #3a3a3a solid 1px;
+} */
+
+@media screen and (min-width: 1024px) {
+  main footer ul {
+    float: left;
+    line-height: 1.8;
+    margin-bottom: 0;
+    margin-left: 16px;
+  }
+  main footer ul::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+main footer ul li {
+  list-style: none;
+  padding-right: 16px;
+}
+@media screen and (min-width: 1024px) {
+  main footer ul li {
+    display: inline;
+    text-align: left;
+  }
+}
+main footer ul li a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+main footer ul li a:focus, main footer ul li a:hover {
+  color: white;
+}
+@media screen and (min-width: 1024px) {
+  main footer .secondary-links {
+    float: right;
+  }
+}
+main footer .secondary-links li a {
+  font-size: 12px;
+  font-weight: 100 !important;
+}
+main footer .secondary-links .social {
+  margin: 1em 0 0 0;
+}
+@media screen and (min-width: 1024px) {
+  main footer .secondary-links .social {
+    float: right;
+    margin-top: 0;
+  }
+}
+main footer .secondary-links .social li {
+  float: left;
+  font-size: 1em;
+  line-height: 0;
+  margin: 0;
+  padding-right: 0.7em;
+}
+main footer .secondary-links .social li:last-child {
+  padding-right: 0;
+}
+main footer .secondary-links .social li > a {
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  color: #444;
+  text-align: center;
+  line-height: 30px;
+}
+main footer .secondary-links .social li > a:hover {
+  background-color: white;
+}
+
+
+
+
+/* ただのcss(signinの) */
+#flexmod{
+  display: flex;
+  flex-direction: column;
+}
+
+.inputTextin{
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0 0 0;
+}
+.inputTextin b{
+  margin: 20px 0 2px 10%;
+  font-size: 1.1rem;
+}
+
+.mid{
+  text-align: center;
+}
+#passForget{
+  margin: 6px 0 0 40%;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.fieldSize{
+  width: 350px;
+  height: 32px;
+}
+
+
+/* ↓ログインボタン */
+#loginBtn{
+  margin: 40px 0 0 0;
+}
+
+.inputWrap {
+  width: 40%;
+  position: relative;
+  height: 3vw;
+  margin: 0 auto 0 auto;
+  margin-top: 2%;
+  border: none;
+  border-radius: 22px;
+  background: linear-gradient(to right, #77530a, #ffd277, #77530a, #77530a, #ffd277, #77530a);
+  background-size: 250%;
+  background-position: left;
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.inputWrap::before {
+  position: absolute;
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+  height: 95%;
+  border-radius: 20px;
+  transition-duration: 1s;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-size: 200%;
+  z-index: 1;
+  pointer-events: none; /* クリックイベントを無効化 */
+}
+.contentLogin::before{
+  content: "ログイン";
+}
+
+.inputWrap:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.inputWrap:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.btnColor {
+  z-index: 1;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+
+/* 新規登録ボタン */
+
+.buttonStyle {
+  width: 40%;
+  position: relative;
+  height: 3vw;
+  margin: 0 auto 10px auto;
+  margin-top: 2%;
+  border: none;
+  border-radius: 22px;
+  background: linear-gradient(to right, #77530a, #ffd277, #77530a, #77530a, #ffd277, #77530a);
+  background-size: 250%;
+  background-position: left;
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.buttonStyle::before {
+  position: absolute;
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+  height: 95%;
+  border-radius: 20px;
+  transition-duration: 1s;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-size: 200%;
+  z-index: 1;
+  pointer-events: none; /* クリックイベントを無効化 */
+}
+.contentNew::before{
+  content: "新規登録へ";
+}
+
+
+.buttonStyle:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.buttonStyle:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+
+
+
+/* signupの黒金ボタン設定 */
+
+
+.contentSignup::before{
+  content: "サインアップ";
+  font-size: 0.9rem;
+}
+.contentLoginHe::before{
+  content: "ログインへ";
+}
+
+.signupWrap {
+  width: 40%;
+  position: relative;
+  height: 3vw;
+  margin: 0 auto 0 auto;
+  margin-top: 2%;
+  border: none;
+  border-radius: 22px;
+  background: linear-gradient(to right, #77530a, #ffd277, #77530a, #77530a, #ffd277, #77530a);
+  background-size: 250%;
+  background-position: left;
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.signupWrap::before {
+  position: absolute;
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+  height: 95%;
+  border-radius: 20px;
+  transition-duration: 1s;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-size: 200%;
+  z-index: 1;
+  pointer-events: none; /* クリックイベントを無効化 */
+}
+
+.signupWrap:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.signupWrap:hover {
+  background-position: right;
+  transition-duration: 1s;
+}

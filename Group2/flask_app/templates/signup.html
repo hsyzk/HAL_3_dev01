@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>アカウント作成ページ</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.js')}}">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sign.css')}}">
+    
+
+  </head>
+  <!-- menu checkbox周りを<>で囲う際はbodyないのものすべてを囲まないと設定したアニメーションが動かなくなります -->
+  <body>
+    
+    
+    <main>
+      <!-- spaceはnavの帳尻合わせのために作ってる -->
+      <div class="space"></div>
+
+      <div class="signwrap">
+        <div class="sign_logo">
+          <img src="{{url_for('static', filename='images/logo2.png')}}" alt="ロゴ">
+        </div>
+        <div class="div_signup">
+          <form method="post">
+            {{ form.hidden_tag() }}
+            <h1>新規登録</h1>
+            <div class="div_signupform">
+                <b>氏名</b><br>
+                {{ form.name }}
+                <b>カナ</b><br>
+                {{ form.kananame }}
+            </div>
+            <div class="div_signupform">
+                <b>メールアドレス</b><br>
+                {{ form.mailaddress }}
+            </div>
+            <div class="div_signupform">
+                <b>パスワード</b><br>
+                {{ form.password }}
+            </div>
+            <div class="div_signupform">
+                <b>パスワード再入力</b><br>
+                {{ form.confirm_password }}
+            <!--<div class="div_signupform">-->
+                <b>性別</b><br>
+                {{ form.sex }}
+            <!--<div class="div_signupform">-->
+                <b>電話番号</b><br>
+                {{ form.phonenumber }}
+            </div>
+            <div class="signupWrap contentSignup">
+              {{ form.submit(class_='btnColor') }}
+            </div>
+          </form>
+          <!--
+          <h1>新規登録</h1>
+          <div class="div_signupform">
+              <b>ユーザーID</b>
+              <input>
+          </div>
+          <div class="div_signupform">
+              <b>メールアドレス</b>
+              <input>
+          </div>
+          <div class="div_signupform">
+              <b>パスワード</b>
+              <input>
+          </div>
+          <div class="div_signupform">
+              <b>パスワード再入力</b>
+              <input>
+          </div>
+        -->
+          <!--<a href="signin.html"><button>新規登録</button></a> -->
+          <!-- <hr> -->
+          <hr>
+          <a href="{{ url_for('signin') }}"><button class="buttonStyle contentLoginHe"></button></a>
+        </div>
+      </div>
+
+    </main>
+  </body>
+
+</html>

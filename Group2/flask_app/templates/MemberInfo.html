@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>会員情報</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='css/reset.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/common.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/MemberInfo.css')}}"
+    />
+  </head>
+  <body>
+    <div class="wrap">
+      <div>
+        <a href="{{url_for('index')}}"
+          ><img src="{{url_for('static',filename='images/logo2.png')}}"
+        /></a>
+      </div>
+    </div>
+    <input type="checkbox" id="menu" checked />
+    <label for="menu" class="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav">
+      <ul class="navwrap">
+        {% if current_user.is_authenticated %}
+        <li class="hoverli">
+          <a href="{{ url_for('signout') }}">ログアウト</a>
+        </li>
+        <li class="hoverli">
+          <a href="{{ url_for('memberinfo') }}">マイページ</a>
+        </li>
+        {% else %}
+        <li class="hoverli"><a href="{{ url_for('signin') }}">ログイン</a></li>
+        {% endif %}
+        <li><a href="{{url_for('index')}}">トップページ</a></li>
+        <li>
+          <div>
+            <a href="{{url_for('views.movielist')}}">上映中一覧</a>
+            <ul>
+              <li>
+                <a
+                  href="{{ url_for('views.movielist_h') }}"
+                  style="padding-top: 0.1vw"
+                  ><span>H</span>orror</a
+                >
+              </li>
+              <li>
+                <a href="{{ url_for('views.movielist_a') }}"
+                  ><span>A</span>ction</a
+                >
+              </li>
+              <li>
+                <a href="{{ url_for('views.movielist_l') }}"
+                  ><span>L</span>ove</a
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="{{url_for('views.cominglist')}}">公開予定</a></li>
+        <li><a href="{{url_for('views.ticketdetail')}}">チケット代金</a></li>
+        <li>
+          <a
+            style="padding: 0.7vw 0.9vw; font-size: 1vw"
+            href="{{url_for('views.screen')}}"
+            >スクリーンスペック</a
+          >
+        </li>
+        <li>
+          <a style="padding: 0.7vw 1.1vw" href="{{url_for('views.sitemap')}}"
+            >サイトマップ</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <div class="space"></div>
+
+      <div id="Info">
+        <h1>お客様情報</h1>
+        <table id="i_guest">
+          <tr>
+            <td>
+              <p>ユーザー名：{{ user.Name }}</p>
+              <p>メールアドレス：{{ user.MailAddress }}</p>
+            </td>
+          </tr>
+        </table>
+
+        <!-- 個人情報編集form -->
+        <form method="post" action="{{ url_for('memberinfo') }}">
+          {{ form.hidden_tag() }}
+          <h1>情報更新</h1>
+          <div class="form-group">
+            {{ form.name.label }} {{ form.name(class="form-control") }} {% for
+            error in form.name.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %} {{ form.kananame.label(class="p_spase") }} {{
+            form.kananame(class="form-control") }} {% for error in
+            form.kananame.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            {{ form.mailaddress.label }} {{
+            form.mailaddress(class="form-control", type="email") }} {% for error
+            in form.mailaddress.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            {{ form.password.label }} {{ form.password(class="form-control",
+            type="password") }} {% for error in form.password.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            {{ form.phonenumber.label }} {{
+            form.phonenumber(class="form-control") }} {% for error in
+            form.phonenumber.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+          </div>
+          {{ form.submit(class_='btnSet') }}
+        </form>
+
+        <!-- アドレス情報編集form -->
+        <form method="post" action="{{ url_for('memberinfo') }}">
+          {{ form2.hidden_tag() }}
+          <h1>情報更新</h1>
+          <div class="form-group">
+            {{ form2.PostNumber.label }} {{
+            form2.PostNumber(class="form-control") }} {% for error in
+            form2.PostNumber.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            {{ form2.Todohuken.label }} {{ form2.Todohuken(class="form-control")
+            }} {% for error in form2.Todohuken.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            {{ form2.Shiku.label }} {{ form2.Shiku(class="form-control") }} {%
+            for error in form2.Shiku.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            {{ form2.ChosonNumber.label }} {{
+            form2.ChosonNumber(class="form-control") }} {% for error in
+            form2.ChosonNumber.errors %}
+            <span class="error">{{ error }}</span>
+            {% endfor %}
+          </div>
+          {{ form2.submit2(class_='btnSet') }}
+        </form>
+      </div>
+
+      <h1 id="aSpace">予約詳細</h1>
+
+      <table id="yoyakuDetail">
+        {% if reservations %} {% for reservation in reservations|reverse %}
+        <tr>
+          <td>
+            <img
+              src="{{ url_for('static', filename='images/movieimages/' ~ reservation.showing.movie.MovieImageLength) }}"
+              alt="{{ reservation.showing.movie.MovieTitle }}"
+              width="100"
+            />
+          </td>
+          <td id="fontReSize">
+            <p>映画タイトル:{{ reservation.showing.movie.MovieTitle }}</p>
+            <p>
+              上映日：{{
+              reservation.showing.calender.day.strftime('%Y年%m月%d日') }}
+            </p>
+            <p>
+              上映時間： {{
+              reservation.showing.showtime.start_time.strftime('%H:%M') }} ～ {{
+              reservation.end_time.strftime('%H:%M') }}
+            </p>
+            <p>スクリーン:{{ reservation.showing.ScreenID }}</p>
+            <p>座席番号:{{ reservation.seat_number }}</p>
+          </td>
+        </tr>
+        {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">チケットの予約はありません。</td>
+        </tr>
+        {% endif %}
+      </table>
+
+      <footer>
+        <div class="logo">
+          <i class="fa fa-picture-o" aria-hidden="true"></i>
+        </div>
+        <ul>
+          <li><a href="{{url_for('index')}}">トップ</a></li>
+          <li><a href="{{url_for('index')}}#news_campaign">お知らせ</a></li>
+          <li><a href="{{url_for('views.screen')}}">スクリーンスペック</a></li>
+          <li><a href="{{url_for('views.sitemap')}}">サイトマップ</a></li>
+        </ul>
+
+        <div class="secondary-links">
+          <ul class="social">
+            <li>
+              <a href="#">
+                <i class="fa fa-github"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-codepen"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

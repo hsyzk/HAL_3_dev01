@@ -1,0 +1,267 @@
+/* ----------スライダー設定---------- */
+#slider_space{
+    margin: 65px 0 0 0;
+    height: 400px;
+}
+.slider{
+    height: 54vh;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.slider div{
+    justify-content: center;
+    align-items: center;
+}
+.slider div img{
+    max-height: 100%;
+    max-width: 90%;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.prev-arrow{
+    bottom: 0;
+    cursor: pointer;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    width: 40px;
+    left: 180px;
+    background-color: #aaa;
+    border-radius: 100px;
+    z-index: 5;
+}
+.next-arrow{
+    bottom: 0;
+    cursor: pointer;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    width: 40px;
+    right: 180px;
+    background-color: #aaa;
+    border-radius: 100px;
+    z-index: 5;
+}
+
+.slider .slick-slide {
+    opacity: 0.6;
+    transition: opacity 0.5s;
+}
+
+.slider .slick-center {
+    opacity: 1;
+}
+
+
+/* ----------上映中作品＆上映予定作品設定---------- */
+#Screening_list_space{
+    width: 80%;
+    margin: 50px auto 0 auto;
+    display: flex;
+    justify-content: center;
+}
+/* #C_rightspace{} */
+#switching{
+    display: flex;
+}
+
+
+#load-moreIn{
+    background-color: #222;
+    padding: 0 0 1px 0;
+}
+
+#Screening_list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 63vw;
+    height: auto;
+    padding: 20px 0 0 0;
+}
+
+.works{
+    margin: 10px 0 0 0;
+    /* background-color: #fff; */
+    width: 13vw;
+    height: auto;
+}
+.works a{
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: #fff;
+}
+.works a figure{
+    margin: 0 auto;
+}
+.works a figure img{
+    width: 11vw;
+}
+
+.works a p{
+    font-size: 0.9rem;
+    width: 13vw;
+    word-wrap: break-word;
+}
+
+#load-more{
+    display: block;
+    margin: 40px auto 25px auto;
+    padding: 10px 20px;
+    font-size: 1.3rem;
+}
+
+
+
+
+
+
+#ticket_btn{
+    background-color: rgb(80, 211, 255);
+    width: 12vw;
+    height: 50vh;
+    margin-left: 5%;
+    border: #000000 1px solid;
+    border-radius: 10px;
+}
+#ticket_btn a p{
+    text-align: center;
+    margin: auto 0;
+}
+
+
+/* ----------ニュース＆キャンペーン設定----------- */
+
+#news_campaign{
+    width: 1080px;
+    margin: 70px auto 200px auto;
+}
+#news_header{
+    margin: 0 0 25px 5.3vw;
+    width: 24vw;
+    font-size: 2vw;
+    border-bottom: #222 2px solid;
+    padding: 0 10px 0 15px;
+    background-color: #eee;
+}
+
+#adjust{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+#news{
+    background-color: white;
+    border: #222 2px solid;
+    width: 60vw;
+}
+.news_space{
+    padding: 0 0 5px 0;
+    width: 57vw;
+    margin: 15px 0 0 25px;
+    border-bottom: #000000 1px solid;
+}
+.news_space:last-child{
+    padding: 0 0 5px 0;
+    width: 40vw;
+    margin: 15px 0 0 25px;
+    border-bottom: none;
+}
+.day{
+    font-size: 0.7rem;
+}
+.content a{
+    margin: 0 0 0 5px;
+    text-decoration: none;
+    color: #000000;
+    word-wrap: break-word;
+}
+
+
+#campaign_space{
+    display: flex;
+    justify-content: space-around;
+    margin: -30px 0 50px 0;
+}
+.ittan{
+    margin: 0 0 25px 0;
+}
+.ittan a figure img{
+    width: 25vw;
+}
+
+
+.backimg{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    /* z-index: -1; */
+    
+}
+.backimg img{
+    width: 100%;
+    height: auto;
+}
+
+
+
+/* ↓タブ切り替え機能のやつ */
+
+.tab-content {
+    display: none;
+}
+   
+.active-tab {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 63vw;
+    height: auto;
+    padding: 20px 0 0 0;
+}
+
+.tab-button {
+    padding: 7px 0;
+    width: 31.5vw;
+    font-size: 1.1rem;
+    background-color: #222;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: #fff 2px solid;
+}
+.borderRight{
+    border-right: #fff 2px solid;
+}
+.borderLeft{
+    border-left: #fff 2px solid;
+}
+
+.tab-button.active {
+    border: none;
+}
+
+#S_showing{
+    padding: 7px 0;
+    width: 31.5vw;
+    font-size: 1.1rem;
+    background-color: #222;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+#S_schedule{
+    padding: 7px 0;
+    width: 31.5vw;
+    font-size: 1.1rem;
+    background-color: #222;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    
+    border: #fff 1px solid;
+}

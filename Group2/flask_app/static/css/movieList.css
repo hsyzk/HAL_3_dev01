@@ -1,0 +1,361 @@
+.ML{
+  background-image: url(../images/eigakan2.jpg);
+  background-attachment: fixed; 
+}
+.MT{
+  color: #fff;
+}
+/* --------------------------------------------上映中作品一覧ページ-------------------------------------------------- */
+.s_WorkSpace{
+  width: 65%;
+  margin: 0 auto;
+}
+
+.s_WorkSpace .s_titleWrap{
+  height: 6vh;
+  margin: 20px auto 40px auto;
+}
+
+.s_WorkSpace .s_titleWrap h1{
+  font-size: 1.5rem;
+}
+
+
+/* ------action-------- */
+.s_titleWrap_A{
+  height: 6vh;
+  margin: 20px auto 40px auto;
+}
+.s_titleWrap_A h1{
+  font-size: 1.7rem;
+  font-family: "Reggae One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #fff;
+  width: 350px;
+  text-align: center;
+}
+
+.actionNav{
+  background-color: #ff4433;
+}
+.actionNav ul.navwrap li a:hover{
+  color: #ffd94f;
+}
+.actionNav ul.navwrap li div ul li a:hover span {
+  color: #ffd94f;
+}
+
+.ac_css{
+  background-color: rgba(255, 30, 30, 0.8);
+  z-index: 200;
+}
+
+.actionColor{
+  background-color: rgb(77, 98, 222,0.9);
+}
+
+/* ------------ */
+
+
+.s_WorkSpace .s_MovieBlock{
+  height: 22vh;
+  display: flex;
+  justify-content: flex-start;
+  /* background-color: bisque; */
+  margin: 25px 0 0 0;
+  border: solid 1px rgb(2, 2, 38);
+  border-radius: 5px;
+  background-color: rgb(2, 2, 38);
+}
+
+.s_WorkSpace .s_MovieBlock .s_imageWrap{
+  margin: auto 20px auto 20px;
+}
+
+.s_WorkSpace .s_MovieBlock .s_imageWrap img{
+  /* height: 18vh; */
+  height: auto;
+  max-height: 17vh;
+  width: 200px;
+  
+}
+
+.s_WorkSpace .s_MovieBlock .s_MovieInfo{
+  width: 60%;
+  margin: 10px 0 0 0;
+}
+
+.s_WorkSpace .s_MovieBlock .s_MovieInfo p{
+  color: #fff;
+}
+
+
+
+.s_WorkSpace .s_MovieBlock .s_buttons{
+  width: 20%;
+  padding: 0 0 0 30px;
+  /* background-color: #c8e4ff; */
+}
+
+.s_WorkSpace .s_MovieBlock .s_buttons div{
+  width: 50%;
+  height: auto;
+  margin: 15px auto 0 auto;
+  text-align: center;
+  background-color: #c8e4ff;
+}
+
+.s_WorkSpace .s_MovieBlock .s_buttons .s_movieStatus{
+  border: solid 1px #ff0000;
+  background-color: #ffe7e7;
+  border-radius: 5px;
+}
+
+.s_WorkSpace .s_MovieBlock .s_buttons .s_detail:hover{
+  opacity: 0.7;
+}
+
+/* HALボタン（チェックボックス） */
+/* スクロール時固定 */
+.space_2{
+  display: flex;
+  height: 100px;
+  width: 280px;
+
+  position: sticky;
+  bottom: 0;
+  left: 0;
+
+  margin: 0 0 0 83%;
+}
+
+.space_2 label{
+  display: flex;
+  width: 65px;
+  height: 65px;
+  padding: 10px;
+  margin: 8px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 50px;
+  cursor: pointer;
+
+  font-size: 1.6rem;
+}
+
+.space_2 input{
+  display: none;
+}
+
+/* チェックボックス色 */
+.space_2 input[id="H_1"]:checked+label {
+  background: #8a2be2;
+  color: #FFF;
+}
+.space_2 label[for="H_1"] {
+  background: #c29fe3;
+  color: #000;
+}
+
+.space_2 input[id="A_2"]:checked+label {
+  background: #ee0000;
+  color: #FFF;
+}
+.space_2 label[for="A_2"] {
+  background: #ff6a6a;
+  color: #000;
+}
+
+.space_2 input[id="L_3"]:checked+label {
+  background: #ff69b4;
+  color: #FFF;
+}
+.space_2 label[for="L_3"] {
+  background: #ff99cc;
+  color: #000;
+}
+
+
+
+/* ---------------------スライドショー--------------------------- */
+.s_WorkSpace .s_sliderBox{
+  width: auto;
+}
+
+.slider {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.slider img {
+  /* width: auto;  */
+  height: 100%; 
+  max-height: 300px; 
+  min-width: 100px;
+  max-width: 200px; 
+  object-fit: contain; /* アスペクト比を保ちつつ、コンテナ内に収める */
+  /* border-radius: 20px; */
+  animation: slider none;
+  animation-iteration-count: 1;
+  object-fit: cover;
+}
+
+.slider .slick-slide {
+  transform: scale(0.9); /*左右の画像のサイズを80%に*/
+  opacity: 1; /*透過%*/
+  animation-play-state: paused;
+}
+.slider .slick-slide a{
+  outline: none;
+  text-decoration: none;
+}
+
+.slider .slick-slide.slick-center {
+  transform: scale(0.9); /*中央の画像のサイズだけ等倍に*/
+  opacity: 1; /*透過なし*/
+}
+
+.slide_container {
+  margin: 0 auto 0 auto;
+  max-width: 900px;
+  width: 100%;
+  margin-top: -50px;
+}
+/* 中央以外のスライド */
+.slider img {
+  height: auto;
+  opacity: .3;
+  transform: scale(.8);
+  transition: opacity .5s, transform .5s;
+  width: 100%;
+}
+/* 中央のスライド */
+.slider .slick-center img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/*矢印の設定*/
+.slick-arrow {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 0;
+  position: absolute;
+  top: 10px;
+  z-index: 1;
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.16));
+}
+.slick-arrow::before {
+  content: '';
+  display: block;
+  width: 9px;
+  height: 9px;
+  border: 1px solid #09000d;
+  border-width: 1.5px 1.5px 0 0;
+  position: absolute;
+  top: 24px;
+  transform: rotate(177deg);
+}
+.slick-next {
+  right: -270px;
+  top: 109px;
+}
+.slick-prev {
+  left: -270px;
+  top: 109px;
+}
+.slick-next::before {
+  transform: rotate(45deg);
+  left: 20px;
+  top: 25px;
+}
+.slick-prev::before {
+  transform: rotate(45deg);
+  border-width: 0 0 1.5px 1.5px;
+  right: 23px;
+  top: 24px;
+}
+
+
+/*ドットナビゲーションの設定*/
+.slick-list {
+  overflow: visible;
+}
+.slider {
+  max-width: 500px;
+  /* margin: 0 auto; */
+  margin: auto;
+}
+.slick-dots {
+  text-align: center;
+  bottom: -30px;
+  text-align: center;
+}
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  padding: 0;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  text-indent: -9999px;
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 0 12px;
+  outline: 0;
+  border-radius: 5px;
+  transition-duration: 0.3s;
+}
+.slick-dots li button:before {
+  content: none;
+}
+.slick-dots li:nth-child(1) button {
+  /* background: #efc5b4; */
+  background: #fff;
+}
+.slick-dots li:nth-child(2) button {
+  /* background: #a9b7ba; */
+  background: #fff;
+}
+.slick-dots li:nth-child(3) button {
+  background: #fff;
+}
+.slick-dots li:nth-child(4) button {
+  background: #fff;
+}
+.slick-dots li:nth-child(5) button {
+  background: #fff;
+}
+.slick-dots li button:hover, .slick-dots li.slick-active button {
+  border-radius: 0px;
+  width: 12px;
+  height: 12px;
+}
+
+
+
+/* --------------------------------------------公開予定作品一覧ページ-------------------------------------------------- */
+
+.s_WorkSpace .s_MovieBlock .s_buttons .s_movieStatus_2{
+  border: solid 1px #00ff08;
+  background-color: #e7ffe9;
+  border-radius: 5px;
+}

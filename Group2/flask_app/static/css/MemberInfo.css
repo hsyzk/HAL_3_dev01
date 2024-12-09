@@ -1,0 +1,104 @@
+/* 以下メイン */
+#Info {
+  position: relative;
+  width: 65%;
+  margin: 50px  auto 0 auto;
+  background-color: #eee;
+}
+#Info h1{
+  border-bottom: 2px solid #000;
+  font-size: 1.7vw;
+  /* margin: 0 0 0 20px; */
+  /* text-align: center; */
+  padding: 0 0 0 30px;
+}
+
+#i_guest{
+  margin: 35px 0 45px 0;
+}
+#i_guest tr td p{
+  font-size: 1.1rem;
+  margin: 0 0 10px 30px;
+}
+
+
+.form-group{
+  font-size: 1.1vw;
+  margin: 35px 0 30px 30px;
+}
+.btnSet{
+  margin: 0 0 40px 30px;
+  padding: 10px 40px;
+  background-color: #6c757d;
+  color: #fff;
+  border-radius: 100px;
+}
+.p_spase{
+  margin: 0 0 0 3vw;
+}
+
+
+
+#aSpace{
+  margin: 80px 0 2vh 18vw;
+  font-size: 2vw;
+}
+
+#yoyakuDetail{
+  width: 65vw;
+  margin: 0 auto 0 auto;
+}
+
+#yoyakuDetail tr{
+  border-bottom: #000 1px solid;
+}
+#yoyakuDetail tr:last-child{
+  border: none;
+}
+
+#yoyakuDetail tr td{
+  padding: 50px 0;
+  text-align: center;
+  vertical-align: middle;
+
+}
+#yoyakuDetail tr td img{
+  width: 10vw;
+}
+
+#fontReSize{
+  font-size: 1.1vw;
+}
+#fontReSize p{
+  margin: 0 0 7px 0;
+}
+
+
+
+
+main div#Histry {
+  position: relative;
+  width: 60%;
+  margin: 10%  auto;
+  background-color: #ccc;
+}
+
+#Histry h1{
+  font-size: 1.6vw;
+  margin: 0 0 20px 0;
+}
+
+#watchList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px 0 0 0;
+}
+#watchList figure{
+  width: 13vw;
+  margin: 0 0 40px 0;
+}
+#watchList figure img{
+  width: auto;
+  max-height: 31vh;
+}

@@ -1,0 +1,207 @@
+
+.cp_iptxt {
+  position: relative;
+  width: 65%;
+  margin: 3vw auto;
+}
+.cp_iptxt input[type='text'],[type='month'] {
+  font: 1.2vw sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5vw;
+  padding-left: 3vw;
+  letter-spacing: 4%;
+  border: 0;
+}
+
+
+.flatpickr-calendar {
+  width: 100%;
+
+}
+.flatpickr-monthSelect-month{
+  text-decoration: underline;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.flatpickr-monthSelect-month:hover{
+  opacity: 0.6;
+}
+
+.cp_iptxt input[type='text']:focus {
+  outline: none;
+}
+.cp_iptxt input[type='text']:focus::after {
+  outline: none;
+}
+.cp_iptxt i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3vw;
+  height: 3vw;
+  padding: 1.3vw 0.5vw;
+  color: #aaaaaa;
+}
+#step-wrap{
+  background-color: rgba(70, 70, 70,1);
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.button-div{
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  display: flex;
+}
+.btn {
+  position: relative;
+  
+  width: 55%;
+  margin: 0 3%;
+  font-size: 1.2vw;
+  font-weight: 900;
+  padding: 1vw 1.5vw;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn a{
+  z-index: 2;
+  height:100%;
+  width: 100%;
+}
+
+.confirmCarddate{
+  position: absolute;
+  margin-top: -1.45vw;
+  font-size: 1.8vw;
+  font-weight: 900;
+}
+
+
+/* */
+
+
+/* モーダルのスタイル */
+.goldbtn{
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+
+}
+.modal__trigger {
+  cursor: pointer;
+}
+.modal__wrapper {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 250;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.modal__layer {
+  height: 100%;
+  background: rgba(50, 50, 50, .85);
+  cursor: pointer;
+}
+.modal__title{
+  
+  text-align: center;
+  font-size: 2rem;
+}
+.modal__text{
+  font-size: 1.25rem;
+}
+.modal__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(calc(100% - 100px), 1000px);
+  height: calc(100% - 80px);
+  padding: 20px;
+  background: #fff;
+}
+.modal__inner {
+  position: relative;
+  height: 100%;
+  margin-top: 10%;
+}
+
+/* きんのボタン クラスの部分を変えたらある程度動く */
+
+.modal-close ,.modal-ok ,.btn {
+  width: 45%;     
+  position: relative;
+  height: 4vw;
+  margin: 0 auto;
+  margin-top: 2%;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
+  background-size: 250%;
+  background-position: left;
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.modal-close::before ,.modal-ok::before ,.btn::before{
+  position: absolute;
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 97%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgba(0, 0, 0, 0.842);
+  background-size: 200%;
+}
+.modal-close::before , .back::before {
+  content: "戻る";
+}
+.modal-ok::before{
+  content: "確認OK";
+}
+.modal__trigger::before{
+  content: "次へ";
+}
+
+.modal-close:hover,.modal-ok:hover, .btn:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.modal-close:hover::before,.modal-ok:hover::before, .btn:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.modal-close:active,.modal-ok:active, .btn:active {
+  transform: scale(0.95);
+}
+
+
+/* ここまで */
+
+/* エラーメッセージ */
+.error-message{
+  margin: 0 auto;
+  text-align: center;
+  color: #fb0000;
+}

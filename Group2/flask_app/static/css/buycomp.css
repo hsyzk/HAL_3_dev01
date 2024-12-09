@@ -1,0 +1,186 @@
+
+  /* 装飾 */
+main #compwrap{
+  margin: 0 auto;
+  width: 70%;
+  padding-bottom: 4%;
+  border-radius: 10px;
+  background: rgba(43, 43, 43, 0.8);
+    
+  white-space:nowrap;
+}
+
+main #compwrap h2{
+  margin-top: 3.5%;
+  text-align: center;
+  font-weight: 800;
+  font-size: 2.5vw;
+  color: #fffbfb;
+}
+main #compwrap p,a {
+    text-align: center;
+    font-size: 2vw;
+}
+main .p-color, .p-color2 {
+  
+  color: #fffbfb;
+  margin: 0 auto;
+}
+
+main a  {
+  text-decoration: underline #ff0000;
+  color: #fc4765;
+  cursor: pointer;
+  z-index: 30;
+}
+
+
+/* 背景画像 */
+.backimg{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  /* z-index: -1; */
+  
+}
+.backimg img{
+  width: 100%;
+  height: auto;
+}
+/* 購入したチケット...のところ */
+.button-wrap{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;  
+}
+
+/* ひかり */
+.light-button button.bt {
+  position: relative;
+  height: 150%;
+  display: flex;
+  align-items: flex-end;
+  outline: none;
+  background: none;
+  border: none;
+  cursor: default;
+}
+
+.light-button button.bt .button-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 170px;
+  width: 200px;
+  /* background-color: #0a0a0a; */
+  border-radius: 20px;
+
+  /* outline: #0f0f0f 2px solid;  */
+  
+  outline-offset: 20;
+
+}
+
+
+.light-button button.bt .light-holder {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.light-button button.bt .light-holder .dot {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.light-button button.bt .light-holder .light {
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: 200px;
+  clip-path: polygon(50% 0%, 25% 100%, 75% 100%);
+  background: transparent;
+}
+
+
+
+
+.light-button button.bt:hover .light-holder .light {
+  width: 500%;
+  background: rgb(255, 255, 255);
+  transition: 0.8s;
+  background: linear-gradient(
+    180deg,
+    
+    rgba(255, 255, 255) 3%,
+    #ffff00 10%,
+    rgba(255, 255, 255, 0) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* topへ戻る */
+.Btn {
+  width: 15%;
+  height: 4vw;
+  margin: 0 auto;
+  margin-top: 2%;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
+  background-size: 250%;
+  background-position: left;
+  color: #ffd277;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.Btn::before {
+  position: absolute;
+  content: "TOPページへ戻る";
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 97%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgba(0, 0, 0, 0.842);
+  background-size: 200%;
+}
+
+.Btn:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.Btn:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.Btn:active {
+  transform: scale(0.95);
+}
+
+.Btn a{
+  height:100%;
+  width: 100%;
+}

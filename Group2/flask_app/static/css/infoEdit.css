@@ -1,0 +1,22 @@
+
+
+main div#edit{
+    position: relative;
+    width: 60%;
+    margin: 5%  auto;
+    background-color: #ccc;
+}
+main div#edit h1{
+  font-size: 1.5rem;
+  margin: 3% ;
+}
+main div#edit table{
+  margin: 5% auto;
+}
+main div#edit table tr{
+  margin: 10px ;
+}
+main div#edit p#button{
+  position: absolute;
+  margin: auto 45%;
+}

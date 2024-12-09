@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>料金・割引サービス表</title>
+
+    <link rel="stylesheet" href="{{url_for('static',filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/ticketDetails.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='js/common.js')}}">
+    
+
+  </head>
+  <!-- menu checkbox周りを<>で囲う際はbodyないのものすべてを囲まないと設定したアニメーションが動かなくなります -->
+  <body>
+    <div class="wrap">
+      <div><a href="{{url_for('index')}}"><img src="{{url_for('static',filename='images/logo2.png')}}"></a></div>
+    </div>
+    <input type="checkbox" id="menu" checked/>
+    <label for="menu" class="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav">
+      <ul class="navwrap">
+        {% if current_user.is_authenticated %}
+        <li class="hoverli"><a href="{{ url_for('signout') }}">ログアウト</a></li>
+        <li class="hoverli"><a href="{{ url_for('memberinfo') }}">マイページ</a></li>
+        {% else %}
+        <li class="hoverli"><a href="{{ url_for('signin') }}">ログイン</a></li>
+        {% endif %} 
+        <li><a href="{{url_for('index')}}">トップページ</a></li>
+        <li>
+          <div >
+            <a href="{{url_for('views.movielist')}}">上映中一覧</a>
+            <ul>
+              <li><a href="{{ url_for('views.movielist_h') }}" style="padding-top: 0.1vw;"><span>H</span>orror</a></li>
+              <li><a href="{{ url_for('views.movielist_a') }}"><span>A</span>ction</a></li>
+              <li><a href="{{ url_for('views.movielist_l') }}"><span>L</span>ove</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="{{url_for('views.cominglist')}}">公開予定</a></li>
+        <li><a href="{{url_for('views.ticketdetail')}}">チケット代金</a></li>
+        <li><a style="padding: 0.7vw 0.9vw; font-size:1vw;" href="{{url_for('views.screen')}}">スクリーンスペック</a></li>
+        <li><a style="padding: 0.7vw 1.1vw;" href="{{url_for('views.sitemap')}}">サイトマップ</a></li>
+      </ul>
+    </nav>
+    <div class="backimg"><img src="{{url_for('static', filename='images/eigakan2.jpg')}}" alt=""/div>
+    
+    <div class="backimg"><img src="{{url_for('static', filename='images/eigakan2.jpg')}}" alt=""></div>
+    
+    
+    <main>
+      <!-- spaceはnavの帳尻合わせのために作ってる -->
+      <div class="space"></div>
+
+        <div id="ticketDetails">
+            <h1>料金・割引サービス表</h1>
+            <section>
+                <h2>通常料金</h2>
+                <div>
+                    <hr>
+                    <div class="Contents">
+                        <p>一般</p>
+                        <p>￥2000</p>
+                    </div>
+                    <hr>
+                    <div class="Contents">
+                        <p>大学生</p>
+                        <p>￥1500</p>
+                    </div>
+                    <hr>
+                    <div class="Contents">
+                        <p>高校生</p>
+                        <p>￥1000</p>
+                    </div>
+                    <hr>
+                    <div class="Contents">
+                        <p>中学生・小学生</p>
+                        <p>￥700</p>
+                    </div>
+                    <hr>
+                    <div class="Contents">
+                        <p>幼児（3歳以下）</p>
+                        <p>￥700</p>
+                    </div>
+                    <hr>
+                </div>
+
+                <h2>割引サービス</h2>
+                <div>
+                    <hr>
+                    <div class="Contents">
+                        <p>シニア（60歳以上）</p>
+                        <p>10%OFF</p>
+                    </div>
+                    <hr>
+                    <div class="Contents">
+                        <p>レイトショー（20時以降）</p>
+                        <p>10%OFF</p>
+                    </div>
+                    <hr>
+                    <div class="Contents">
+                        <p>シニア（60歳以上）</p>
+                        <p>10%OFF</p>
+                    </div>
+                    <hr>
+                    <div class="Contents">
+                        <p>ファーストデイ（毎月1日）</p>
+                        <p>10%OFF</p>
+                    </div>
+                    <hr>
+                </div>
+            </section>
+        </div>
+
+      <footer>
+        <div class="logo">
+          <i class="fa fa-picture-o" aria-hidden="true"></i>
+        </div>
+        <ul>
+          <li><a href="{{url_for('index')}}">トップ</a></li>
+          <li><a href="{{url_for('index')}}#news_campaign">お知らせ</a></li>
+          <li><a href="{{url_for('views.screen')}}">スクリーンスペック</a></li>
+          <li><a href="{{url_for('views.sitemap')}}">サイトマップ</a></li>
+        </ul>
+      
+        <div class="secondary-links">
+        
+          <ul class="social">
+            <li><a href="#">
+              <i class="fa fa-github"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-twitter"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-codepen"></i>
+            </a></li>
+          </ul>
+        </div>
+      </footer>
+    </main>
+  </body>
+
+</html>

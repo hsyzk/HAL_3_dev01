@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>上映中作品一覧(アクション)</title>
+
+    <!-- スライドショー -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/movieList.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='js/common.js')}}">
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+    
+  </head>
+  <!-- menu checkbox周りを<>で囲う際はbodyないのものすべてを囲まないと設定したアニメーションが動かなくなります -->
+  <body>
+    <div id="wrap"></div>
+    <div class="wrap ac_css">
+      <div><a href="{{ url_for('index') }}"><img src="{{url_for('static', filename='images/logo2.png')}}"></a></div>
+    </div>
+    <input type="checkbox" id="menu" checked/>
+    <label for="menu" class="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav actionNav">
+      <ul class="navwrap">
+        {% if current_user.is_authenticated %}
+        <li class="hoverli"><a href="{{ url_for('signout') }}">ログアウト</a></li>
+        <li class="hoverli"><a href="{{ url_for('memberinfo') }}">マイページ</a></li>
+        {% else %}
+        <li class="hoverli"><a href="{{ url_for('signin') }}">ログイン</a></li>
+        {% endif %} 
+        <li><a href="{{ url_for('index') }}">トップページ</a></li>
+        <li>
+          <div >
+            <a href="{{ url_for('views.movielist') }}">上映中一覧</a>
+            <ul>
+              <li><a href="{{ url_for('views.movielist_h') }}" style="padding-top: 0.1vw;"><span>H</span>orror</a></li>
+              <li><a href="{{ url_for('views.movielist_a') }}"><span>A</span>ction</a></li>
+              <li><a href="{{ url_for('views.movielist_l') }}"><span>L</span>ove</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="{{ url_for('views.cominglist') }}">公開予定</a></li>
+        <li><a href="{{ url_for('views.ticketdetail') }}">チケット代金</a></li>
+        <li><a style="padding: 0.7vw 0.9vw; font-size:1vw;" href="{{ url_for('views.screen') }}">スクリーンスペック</a></li>
+        <li><a style="padding: 0.7vw 1.1vw;" href="{{ url_for('views.sitemap') }}">サイトマップ</a></li>
+      </ul>
+    </nav>
+    <div class="backimg"><img src="{{url_for('static', filename='images/actionback.png')}}" alt=""></div>
+    
+    <main>
+      <!-- spaceはnavの帳尻合わせのために作ってる -->
+      <div class="space"></div>
+
+      <div class="s_WorkSpace">
+        <div class="s_titleWrap_A">
+          <h1>上映中アクション作品一覧</h1>
+        </div>
+
+        <div class="s_sliderBox">
+          <div class="slide_container">
+            <div class="slider2">
+              <ul class="slider fadeInTrigger">
+                {% for movie in movies %}
+                <li>
+                  <img src="{{ url_for('static', filename='images/movieimages/' + movie.MovieImageLength) }}" alt="{{ movie.MovieTitle }}"/>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="s_MovieList">
+          {% for movie in movies %}
+            <div class="s_MovieBlock">
+              <div class="s_imageWrap">
+                <img src="{{ url_for('static', filename='images/movieimages/' + movie.MovieImageSide) }}" alt="{{ movie.MovieTitle }}"/>
+              </div>
+              <div class="s_MovieInfo">
+                <p>映画タイトル　{{ movie.MovieTitle }}</p>
+                <p>キャスト　
+                  {% for cast in movie.cast %}
+                  {{ cast.CastName[:50] }}{% if cast.CastName|length > 50 %}...{% endif %}
+                  {% endfor %}
+                </p>
+                <p>レイティング　{{ movie.agelimit.AgeLimit }}</p>
+              </div>
+              <div class="s_buttons">
+                <div class="s_movieStatus"><p>上映中</p></div>
+                <div class="s_detail">
+                  <a href="{{ url_for('views.moviedetail', movie_id=movie.MovieID) }}" style="text-decoration: none;
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                    cursor: pointer;">詳細</a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="space_2">
+        <a href="{{ url_for('views.movielist_h') }}"><input type="checkbox" id="H_1" name="space_2"><label for="H_1">H</label></a>
+        <a href="{{ url_for('views.movielist_a') }}"><input type="checkbox" id="A_2" name="space_2"><label for="A_2">A</label></a>
+        <a href="{{ url_for('views.movielist_l') }}"><input type="checkbox" id="L_3" name="space_2"><label for="L_3">L</label></a>
+      </div>
+
+
+      <footer class="actionColor">
+        <div class="logo">
+          <i class="fa fa-picture-o" aria-hidden="true"></i>
+        </div>
+        <ul>
+          <li><a href="{{url_for('index')}}">トップ</a></li>
+          <li><a href="top.html#news_campaign">お知らせ</a></li>
+          <li><a href="{{url_for('views.screen')}}">スクリーンスペック</a></li>
+          <li><a href="{{url_for('views.sitemap')}}">サイトマップ</a></li>
+        </ul>
+    
+        <div class="secondary-links">
+    
+          <ul class="social">
+            <li><a href="#">
+              <i class="fa fa-github"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-twitter"></i>
+            </a></li>
+            <li><a href="#">
+              <i class="fa fa-codepen"></i>
+            </a></li>
+          </ul>
+        </div>
+      </footer>
+    </main>
+
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-7/js/6-1-7.js"></script>
+    <script src="{{url_for('static', filename='/js/movielist.js')}}"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>購入確認画面</title>
+
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/reset.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/common.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/common.js')}}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/stepbar.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/buyCheck.css')}}"
+    />
+  </head>
+  <!-- menu checkbox周りを<>で囲う際はbodyないのものすべてを囲まないと設定したアニメーションが動かなくなります -->
+  <body>
+    <div class="wrap">
+      <div>
+        <a href="{{ url_for('index') }}"
+          ><img src="{{url_for('static', filename='images/logo2.png')}}"
+        /></a>
+      </div>
+    </div>
+
+    <div class="backimg">
+      <img src="{{url_for('static', filename='images/eigakan2.jpg')}}" alt="" />
+    </div>
+
+    <main>
+      <!-- spaceはnavの帳尻合わせのために作ってる -->
+      <div class="space"></div>
+
+      <div id="Wrap">
+        <ul class="progressbar">
+          <li class="active">チケット情報</li>
+          <li>お支払入力</li>
+          <li>購入完了</li>
+        </ul>
+        <form
+          id="priceForm"
+          method="POST"
+          action="{{ url_for('views.paycheck') }}"
+        >
+          <input type="hidden" name="showing_id" value="{{ showing_id }}" />
+          <input
+            type="hidden"
+            name="selected_seats"
+            value="{{ selected_seats }}"
+          />
+          <div id="flexArea">
+            <div id="buy_main">
+              <div id="title">
+                <p id="titleName">{{ showing.movie.MovieTitle }}</p>
+                <!-- 何文字以上で「映画タイトル...」みたいな感じに -->
+              </div>
+              <div id="dateTime">
+                <p id="day">{{ format_japanese_day(date) }}</p>
+                <p id="time">
+                  {{ start_time.strftime('%H:%M') }} 〜 {{
+                  end_time.strftime('%H:%M') }}
+                </p>
+              </div>
+            </div>
+
+            <div id="seat">
+              <div id="screen">
+                <p>スクリーン{{ showing.screen.ScreenID }}</p>
+              </div>
+              <div id="seatNumber">
+                {% for seat in selected_seats %}
+                <p>{{ seat.Row }}{{ seat.Number }}</p>
+                <!-- 繰り返し要素を表示 -->
+                {% endfor %}
+              </div>
+            </div>
+
+            <div id="total_price">
+              <div id="classiFication">
+                <div id="classF">
+                  <table>
+                    {% for seat in selected_seats %}
+                    <div>
+                      <div class="cl" for="seat_{{ loop.index }}">
+                        座席 {{ seat.Row }}{{ seat.Number }} の料金プラン:
+                      </div>
+                      <div class="pl">
+                        <select
+                          name="price_plans[]"
+                          data-seat-id="{{ seat.id }}"
+                        >
+                          {% for plan in price %}
+                          <option value="{{ plan.PriceID }}">
+                            {{ plan.PricePlans }} - {{ plan.Price }}円
+                          </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </table>
+                </div>
+                <div id="total">
+                  <p>
+                    計<span id="seatCount">{{ selected_seats|length }}</span>枚
+                  </p>
+                </div>
+              </div>
+              <div id="priceArea">
+                <div id="price">
+                  <p id="priceG">合計</p>
+                  <p id="priceY"><!--ココに入れる-->0円</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="btnArea">
+              <button class="modal-close" id=""></button>
+              <button type="submit" class="modal-ok" id=""></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+  <script>
+    // 合計金額を計算して表示する関数
+    function updateTotalPrice() {
+      let total = 0;
+      const priceElements = document.querySelectorAll(
+        'select[name="price_plans[]"]'
+      );
+
+      priceElements.forEach(function (select) {
+        const selectedOption = select.options[select.selectedIndex];
+        const price = parseInt(
+          selectedOption.text.split('-')[1].replace('円', '').trim()
+        );
+        total += price;
+      });
+
+      // 合計金額を表示
+      document.getElementById('priceY').textContent =
+        total.toLocaleString() + '円';
+    }
+
+    // 各セレクトボックスにイベントリスナーを追加
+    window.addEventListener('DOMContentLoaded', (event) => {
+      const priceElements = document.querySelectorAll(
+        'select[name="price_plans[]"]'
+      );
+
+      priceElements.forEach(function (select) {
+        select.addEventListener('change', updateTotalPrice);
+      });
+
+      // 初期計算
+      updateTotalPrice();
+    });
+  </script>
+</html>

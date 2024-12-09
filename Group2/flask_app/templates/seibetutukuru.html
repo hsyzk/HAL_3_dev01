@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>性別作る</title>
+</head>
+<body>
+    <h2>性別一覧</h2>
+    <ul>
+        {% for sex in seibetus %}
+            <li>
+                {{ sex.Sex }}
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>性別追加</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}">
+        <input type="text" name="seibetutukuru" placeholder="性別">
+        <button type="submit">追加</button>
+    </form>
+    <h2>キャパ一覧</h2>
+    <ul>
+        {% for capa in capas %}
+            <li>
+                {{ capa.capa }}
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>キャパ追加</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}">
+        <input type="text" name="capacity" placeholder="キャパ">
+        <button type="submit">追加</button>
+    </form>
+    <h2>年齢制限一覧</h2>
+    <ul>
+        {% for agelimit in agelimits %}
+            <li>
+                {{ agelimit.AgeLimit }}
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>年齢制限追加</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}">
+        <input type="text" name="agelimit" placeholder="年齢制限">
+        <button type="submit">追加</button>
+    </form>
+    <!--<form method="POST" action="{{ url_for('seibetutukuru') }}" enctype="multipart/form-data">
+        <input type="text" name="movie" placeholder="映画">
+        <input type="file" name="movie_image">
+
+        <button type="submit">追加</button>
+    </form>-->
+    <h2>映画カテゴリー一覧</h2>
+    <ul>
+        {% for agelimit in moviecategorys %}
+            <li>
+                {{ agelimit.CategoryName }}
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>映画カテゴリー追加</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}">
+        <input type="text" name="moviecategory" placeholder="映画カテゴリー">
+        <button type="submit">追加</button>
+    </form>
+    <h2>映画追加</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}" enctype="multipart/form-data">
+        <input type="text" name="movie" placeholder="映画"><br>
+        <p>縦画像</p><input type="file" name="movie_imagelength"><br>
+        <p>横画像</p><input type="file" name="movie_imageside"><br>
+        <input type="text" name="md" placeholder="監督"><br>
+        <input type="text" name="ms" placeholder="脚本"><br>
+        <input type="text" name="ov" placeholder="概要"><br>
+        <input type="text" name="st" placeholder="上映時間"><br>
+        
+        <select name="agelimitdayo">
+            {% for limit in agelimits %}
+                <option value="{{ limit.AgeLimitID }}">{{ limit.AgeLimit }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <select name="moviecategorydayo">
+            {% for category in moviecategorys %}
+                <option value="{{ category.MovieCategoryID }}">{{ category.CategoryName }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <!-- startdateとfinishdateの入力フィールドを追加 -->
+        <label for="startdate">開始日:</label>
+        <select name="startdate">
+            {% for date in calendars %}
+                <option value="{{ date.id }}">{{ date.day }}</option>
+            {% endfor %}
+        </select><br>
+    
+        <label for="finishdate">終了日:</label>
+        <select name="finishdate">
+            {% for date in calendars %}
+                <option value="{{ date.id }}">{{ date.day }}</option>
+            {% endfor %}
+        </select><br>
+    
+        <button type="submit">追加</button>
+    </form>
+    
+
+    <h2>映画情報削除</h2>
+    {% for movie in movies %}
+        {{ movie.MovieTitle }}
+        <form method="POST" action="{{ url_for('seibetutukuru') }}" style="display: inline;"> 
+            {{ delete_movie_form.hidden_tag() }}
+            <input type="hidden" name="delete_movie_id" value="{{ movie.MovieID }}">
+            <button type="submit" class="btn btn-danger btn-sm">削除</button>
+        </form>
+        <br>
+    {% endfor %}
+
+
+    <h2>キャスト追加</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}" enctype="multipart/form-data">
+        <input type="text" name="cast" placeholder="キャスト"><br>
+        <select name="moviedayo">
+            {% for movie in movies %}
+                <option value="{{ movie.MovieID }}">{{ movie.MovieTitle }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">追加</button>
+    </form>
+    <h2>料金追加</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}">
+        <input type="text" name="priceplans" placeholder="料金プラン">
+        <input type="text" name="price" placeholder="料金">
+        <button type="submit">追加</button>
+    </form>
+    <h2>割引追加</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}">
+        <input type="text" name="discountname" placeholder="割引名">
+        <input type="text" name="discount" placeholder="割引率(小数)">
+        <button type="submit">追加</button>
+    </form>
+    <h2>上映時間区分追加</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}">
+        <input type="text" name="kubunmei" placeholder="区分名">
+        <input type="time" name="start_time" placeholder="開始時間">
+        <button type="submit">追加</button>
+    </form>
+    <h2>上映追加</h2>
+    {% for movie in movies %}
+        <!-- <p>
+            映画タイトル：{{ movie.MovieTitle }}<br>
+            上映開始日：{{ movie.start_calendar.day }}　上映終了日：{{ movie.finish_calendar.day }}
+        </p> -->
+    {% endfor %}
+    <form method="POST" action="{{ url_for('seibetutukuru') }}" enctype="multipart/form-data">
+        <p style="margin-bottom: 0;">映画タイトル　　　　　　　　　　　　　　スクリーンID　日付　　映画区分</p>
+        <select name="moviedesu">
+            {% for movie in movies %}
+                <option value="{{ movie.MovieID }}">{{ movie.MovieTitle }}</option>
+            {% endfor %}
+        </select>
+        <select name="screendayo">
+            {% for screen in screens %}
+                <option value="{{ screen.ScreenID }}">{{ screen.ScreenID }}</option>
+            {% endfor %}
+        </select>
+        <select name="showdatedayo">
+            {% for calendar in calendars %}
+                <option value="{{ calendar.id }}">{{ calendar.day }}</option>
+            {% endfor %}
+        </select>
+        <select name="showtimedayo">
+            {% for showtime in showtimes %}
+                <option value="{{ showtime.kubunmei }}">{{ showtime.kubunmei }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">追加</button>
+    </form>
+    <h2>a</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}">
+        <input type="text" name="a" placeholder="年齢制限">
+        <button type="submit">追加</button>
+    </form>
+    <h2>b</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}">
+        <input type="text" name="b" placeholder="年齢制限">
+        <button type="submit">追加</button>
+    </form>
+    <h2>c</h2>
+    <form method="POST" action="{{ url_for('seibetutukuru') }}">
+        <input type="text" name="c" placeholder="年齢制限">
+        <button type="submit">追加</button>
+    </form>
+
+
+
+
+    <p></p>
+    <h2>予約テーブルのリスト表示</h2>
+    <p>このボタン押すとレコード全部消えるよ</p>
+    <form action="{{ url_for('seibetutukuru') }}" method="post">
+        {{ form.hidden_tag() }}
+        {{ form.submit() }}
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>ReservationID</th>
+                <th>AccountID</th>
+                <th>ShowingID</th>
+                <th>SeatNumber</th>
+                <th>PriceID</th>
+                <th>DiscountID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.ReservationID }}</td>
+                <td>{{ reservation.AccountID }}</td>
+                <td>{{ reservation.ShowingID }}</td>
+                <td>{{ reservation.SeatNumber }}</td>
+                <td>{{ reservation.PriceID }}</td>
+                <td>{{ reservation.DiscountID }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
